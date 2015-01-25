@@ -3,9 +3,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Silex\Provider\TwigServiceProvider;
 use Silex\Application;
+use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 
 $app = new Application();
@@ -14,7 +13,7 @@ $app = new Application();
 // REGISTER SERVICES
 //
 $app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
+    'twig.path' => __DIR__.'/twigs',
 ));
 
 $app->register(new UrlGeneratorServiceProvider());

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.twig" %}
+
+{% block head %}
 	<style type="text/css">
 
 		html, body {
@@ -10,7 +10,7 @@
 		}		
 
 		body {
-		  background: url("img/bg2.jpg") no-repeat center center fixed;
+		  background: url("img/bg2-sm.jpg") no-repeat center center fixed;
 		  background-size: cover;
 		  margin: 0;
 		}
@@ -104,8 +104,9 @@
 
 	</style>
 	<link href="//fonts.googleapis.com/css?family=Lato&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-</head>
-<body>
+{% endblock %}
+
+{% block body %}
 	<div id="container">
 		<div id="msg">New  website<br/>coming  soon</div>
 		<img src="img/logo.png" id="logo" />
@@ -114,5 +115,4 @@
 			<div id="credit">Sam Smith - Eventim Apollo 2014 Photo by Joe Okpako</div>
 		</div>
 	</div>
-</body>
-</html>
+{% endblock %}
