@@ -34,7 +34,7 @@ html, body {
   position: fixed;
   left: 0px;
   top: 0px;
-  width: 250px;
+  width: 210px;
   height: 100%;
   color: #ffffff;
 }
@@ -65,13 +65,18 @@ html, body {
   cursor: pointer;
   font-size: 14px;
   text-transform: none;
-  padding: 22px 20px;
+  padding: 16px 20px;
+  color: #999;
 }
 #cssmenu ul ul li:hover > a,
 #cssmenu ul ul li.open > a,
 #cssmenu ul ul li.active > a {
   background: #424852;
   color: #ffffff;
+  cursor: pointer;
+}
+#cssmenu li a span {
+    cursor: pointer;
 }
 #cssmenu ul ul li:first-child > a {
  

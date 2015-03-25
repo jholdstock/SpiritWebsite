@@ -30,15 +30,18 @@ $context = array(
 //
 
 $app->get('/', function () use ($app, $context) {
-    return $app['twig']->render('base.twig', $context);
+    return $app['twig']->render('construction.twig', $context);
 })->bind("home");
 
+$app->get('/preview', function () use ($app, $context) {
+    return $app['twig']->render('base.twig', $context);
+})->bind("preview");
 //
 // ERROR HANDLER
 //
 $app->error(function (\Exception $e, $code) use ($app, $context) {
-	
-	return $app['twig']->render('base.twig', $context);
+
+	return $app['twig']->render('construction.twig', $context);
 
     switch ($code) {
         case 404:
