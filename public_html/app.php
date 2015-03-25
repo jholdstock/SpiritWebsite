@@ -30,7 +30,7 @@ $context = array(
 //
 
 $app->get('/', function () use ($app, $context) {
-    return $app['twig']->render('construction.twig', $context);
+    return $app['twig']->render('base.twig', $context);
 })->bind("home");
 
 //
@@ -38,7 +38,7 @@ $app->get('/', function () use ($app, $context) {
 //
 $app->error(function (\Exception $e, $code) use ($app, $context) {
 	
-	return $app['twig']->render('construction.twig', $context);
+	return $app['twig']->render('base.twig', $context);
 
     switch ($code) {
         case 404:
