@@ -97,3 +97,17 @@ html, body {
 #cssmenu ul ul li > a:hover::after {
   border-color: #ffffff;
 }
+
+#content {
+  position        : absolute;
+  background-color: #25363B;
+  color           : #738489;
+  left            : 210px;
+  margin          : 20px;
+  padding         : 20px;
+  border-radius   : 10px;
+}
+
+#content h1, #content h2 {
+  margin: 10px;
+}
