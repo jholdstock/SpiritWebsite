@@ -41,6 +41,10 @@ $app->get('/what-we-do', function () use ($app, $context) {
     return $app['twig']->render('what-we-do.twig', $context);
 })->bind("what-we-do");
 
+$app->get('/contact', function () use ($app, $context) {
+    return $app['twig']->render('contact.twig', $context);
+})->bind("contact");
+
 $app->get('/preview', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
 })->bind("preview");
