@@ -33,6 +33,14 @@ $app->get('/', function () use ($app, $context) {
     return $app['twig']->render('construction.twig', $context);
 })->bind("home");
 
+$app->get('/about-us', function () use ($app, $context) {
+    return $app['twig']->render('about-us.twig', $context);
+})->bind("about-us");
+
+$app->get('/what-we-do', function () use ($app, $context) {
+    return $app['twig']->render('what-we-do.twig', $context);
+})->bind("what-we-do");
+
 $app->get('/preview', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
 })->bind("preview");

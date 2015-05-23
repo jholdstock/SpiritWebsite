@@ -1,26 +1,26 @@
 html, body {
-  font-family: 'Lato', sans-serif;
+  font-family     : 'Lato', sans-serif;
   background-color: black;
 }
 
 #logo {
   position: absolute;
-  bottom: 10px;
-  width: 100%;
-  padding: 20px;
+  bottom  : 10px;
+  width   : 100%;
+  padding : 20px;
 }
 
 #content {
-  /*top: 200px;*/
   position        : absolute;
   left            : 200px;
   padding         : 20px;
   border-radius   : 10px;
-  border: solid white 1px;
-  color: #BBB;
-  font-size: 14px;
-  margin: 40px 110px;
-  background-color: rgba(10,10,10,.9);
+  border          : solid white 1px;
+  color           : #D0D0D0;
+  font-size       : 14px;
+  margin          : 40px 110px;
+  background-color: rgba(10,10,10,.8);
+  text-align      : center;
 }
 
 td {
@@ -36,21 +36,26 @@ th, td {
     width: 42%;
 }
 
+h2 {
+  color: #98D6F5;
+}
+
 .spacer  {
   width: 6%; 
 }
 
-#content h2 {
-  margin: 10px;
+.listContainer {
+  display       : inline-block;
+  vertical-align: top;
+  margin        : 0 70px;
 }
 
-#pageTitle {
-  position: absolute;
-  left: 200px;
-  padding         : 20px;
-  border-radius   : 10px;
-  border: solid white 1px;
-  color: #BBB;
-  margin: 40px 110px;
-  background-color: rgba(10,10,10,.9);
+.listContainer ul {
+  list-style-type: none;
+  padding        : 0;
+}
+
+.listContainer h2, .listContainer li {
+  text-align: center;
+  padding   : 0px 0px 8px 0px;
 }
