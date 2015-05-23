@@ -3,111 +3,54 @@ html, body {
   background-color: black;
 }
 
-#cssmenu a {
-  text-align: center;
-  color: white;
-  text-decoration: none; 
-}
-
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul li a {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  display: block;
-  position: relative;
-  box-sizing: border-box;
-}
-#cssmenu {
-  background: -moz-linear-gradient(left,  rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,1)), color-stop(48%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 48%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 48%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 48%,rgba(0,0,0,0) 100%); /* IE10+ */
-  background: linear-gradient(to right,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 48%,rgba(0,0,0,0) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
-
-  padding-top: 12px;
-  height: 100%;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 210px;
-  height: 100%;
-  color: #ffffff;
-}
-#cssmenu ul ul {
-  display: none;
-}
-#cssmenu > ul > li > a,
-#cssmenu > ul > li > a:hover,
-#cssmenu > ul > li.active > a,
-#cssmenu > ul > li.open > a {
-  /* top level elements*/
-  padding: 16px 0;
-  font-weight: bold;
-  font-size: 16px;
-  box-sizing: border-box;
-  text-transform: uppercase;
-}
-
-#cssmenu > ul > li > a:hover > span::after,
-#cssmenu > ul > li.active > a > span::after,
-#cssmenu > ul > li.open > a > span::after {
-  border-color: #eeeeee;
-}
-
-#cssmenu ul ul li a {
-  /* Sub elements */
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-  text-transform: none;
-  padding: 16px 20px;
-  color: #999;
-}
-#cssmenu ul ul li:hover > a,
-#cssmenu ul ul li.open > a,
-#cssmenu ul ul li.active > a {
-  background: #424852;
-  color: #ffffff;
-  cursor: pointer;
-}
-#cssmenu li a span {
-    cursor: pointer;
-}
-#cssmenu ul ul li:first-child > a {
- 
-}
-#cssmenu > ul > li > ul > li:last-child > a,
-#cssmenu > ul > li > ul > li.last > a {
-  background-image: none;
-}
-#cssmenu > ul > li > ul > li.open:last-child > a,
-#cssmenu > ul > li > ul > li.last.open > a {
-  border-bottom: 1px solid #32373e;
-}
-#cssmenu > ul > li > ul > li.open:last-child > ul > li:last-child > a {
-  border-bottom: 0;
-}
-#cssmenu ul ul li.active > a::after,
-#cssmenu ul ul li.open > a::after,
-#cssmenu ul ul li > a:hover::after {
-  border-color: #ffffff;
+#logo {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  padding: 20px;
 }
 
 #content {
+  /*top: 200px;*/
   position        : absolute;
-  background-color: #25363B;
-  color           : #738489;
-  left            : 210px;
-  margin          : 20px;
+  left            : 200px;
   padding         : 20px;
   border-radius   : 10px;
+  border: solid white 1px;
+  color: #BBB;
+  font-size: 14px;
+  margin: 40px 110px;
+  background-color: rgba(10,10,10,.9);
 }
 
-#content h1, #content h2 {
+td {
+    vertical-align: top;
+}
+
+table{
+    table-layout: fixed;
+}
+
+th, td {
+    overflow: hidden;
+    width: 42%;
+}
+
+.spacer  {
+  width: 6%; 
+}
+
+#content h2 {
   margin: 10px;
+}
+
+#pageTitle {
+  position: absolute;
+  left: 200px;
+  padding         : 20px;
+  border-radius   : 10px;
+  border: solid white 1px;
+  color: #BBB;
+  margin: 40px 110px;
+  background-color: rgba(10,10,10,.9);
 }
