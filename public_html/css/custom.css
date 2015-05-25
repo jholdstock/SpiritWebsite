@@ -3,6 +3,10 @@ html, body {
   background-color: black;
 }
 
+h2 {
+  color: #98D6F5;
+}
+
 #logo {
   position: absolute;
   bottom  : 0;
@@ -56,10 +60,6 @@ html, body {
 .about-us th, .about-us td {
     overflow: hidden;
     width: 42%;
-}
-
-h2 {
-  color: #98D6F5;
 }
 
 .about-us .h-spacer  {

@@ -1,48 +1,46 @@
-{% extends "base.twig" %}
-
-{% block body %}
+<div id="contact" style="display:none;">
 	<div style="display: inline-block; vertical-align: top; text-align: left; padding: 0px 40px"> 
-	<table>
-		
-		<tr>
-			<td valign="top">{% embed "icon_address.twig" %}{% endembed %}</td>
-			<td class="h-spacer"></td>
-			<td>
-				Spirit Design Ltd<br />
-				Grove Park Studios<br />
-				188-192 Sutton Court Road<br />
-				Chiswick<br />
-				London<br />
-				W4 3HR
-			</td>
-		</tr>
-		
-		<tr class="v-spacer"></tr>
-		
-		<tr>
-			<td>{% embed "icon_telephone.twig" %}{% endembed %}</td>
-			<td class="h-spacer"></td>
-			<td>+44(0)20 8995 5581</td>
-		</tr>
-		
-		<tr class="v-spacer"></tr>
-		
-		<tr>
-			<td>{% embed "icon_fax.twig" %}{% endembed %}</td>
-			<td class="h-spacer"></td>
-			<td>+44(0)20 8995 7781</td>
-		</tr>
+		<table>
+			
+			<tr>
+				<td valign="top">{% include "icon_address.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>
+					Spirit Design Ltd<br />
+					Grove Park Studios<br />
+					188-192 Sutton Court Road<br />
+					Chiswick<br />
+					London<br />
+					W4 3HR
+				</td>
+			</tr>
+			
+			<tr class="v-spacer"></tr>
+			
+			<tr>
+				<td>{% include "icon_telephone.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>+44(0)20 8995 5581</td>
+			</tr>
+			
+			<tr class="v-spacer"></tr>
+			
+			<tr>
+				<td>{% include "icon_fax.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>+44(0)20 8995 7781</td>
+			</tr>
 
-		<tr class="v-spacer"></tr>
+			<tr class="v-spacer"></tr>
 
-		<tr>
-			<td>{% embed "icon_email.twig" %}{% endembed %}</td>
-			<td class="h-spacer"></td>
-			<td>spirit@spiritdesignuk.com</td>
-		</tr>
+			<tr>
+				<td>{% include "icon_email.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>spirit@spiritdesignuk.com</td>
+			</tr>
 
-	</table>
+		</table>
+	</div>
+
+	<iframe width="500" height="400" frameborder="0" style="margin: 20px; border:0; display: inline-block; vertical-align: top;" src="https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"></iframe>
 </div>
-
-<iframe width="500" height="400" frameborder="0" style="margin: 20px; border:0; display: inline-block; vertical-align: top;" src="https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"></iframe>
-{% endblock %}

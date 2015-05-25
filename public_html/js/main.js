@@ -38,7 +38,7 @@ var ajaxError = function() {
 
 var ajaxCompleted = function(data, textStatus, jqXHR) {
 	data = data.replace(/<(\/?)(head|html|body)(?=\s|>)/g, '<foo$1$2');
-    $response = $(data);
+  $response = $(data);
 	var newContent = $response.find("#content");
 
 	$("#content").replaceWith(newContent);
@@ -46,13 +46,14 @@ var ajaxCompleted = function(data, textStatus, jqXHR) {
 
 var linkHandler = function(e) {
 	e.preventDefault();
-	$.ajax({
-      url: e.currentTarget.href,
-      type: "GET",
-      dataType: "html",
-      success: ajaxCompleted,
-      error: ajaxError,
-    });
+
+	var content = $("#content");
+	content.children().hide();
+
+	content.show();
+
+	var page = $($(e.currentTarget).attr("open-div"));
+	page.show();
 }
 
 var pageLoaded = function() {
