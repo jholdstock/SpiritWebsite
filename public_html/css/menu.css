@@ -14,6 +14,7 @@
   display: block;
   position: relative;
   box-sizing: border-box;
+  z-index: 1000;
 }
 #cssmenu {
   background: -moz-linear-gradient(left,  rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 100%); /* FF3.6+ */
