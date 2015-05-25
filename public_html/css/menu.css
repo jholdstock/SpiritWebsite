@@ -27,7 +27,7 @@
 
   padding-top: 60px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 220px;
