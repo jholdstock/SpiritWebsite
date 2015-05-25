@@ -1,5 +1,9 @@
 html, body {
   font-family     : 'Lato', sans-serif;
+  color           : #D0D0D0;
+}
+
+body {
   background-color: black;
 }
 
@@ -19,14 +23,11 @@ h2 {
 }
 
 #content {
-  position        : absolute;
-  left            : 200px;
+  margin          : 40px 110px 40px 330px;
   padding         : 20px;
   border-radius   : 10px;
   border          : solid white 1px;
-  color           : #D0D0D0;
   font-size       : 14px;
-  margin          : 40px 110px;
   background-color: rgba(10,10,10,.8);
   text-align      : center;
 }
@@ -34,7 +35,6 @@ h2 {
 #footer {
   position   : fixed;
   bottom     : 0;
-  color      : #D0D0D0;
   font-size  : 1em;
   left       : 100px;
   width      : 100%;
