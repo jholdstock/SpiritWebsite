@@ -23,15 +23,15 @@ html, body {
   text-align      : center;
 }
 
-td {
+.about-us td {
     vertical-align: top;
 }
 
-table{
+.about-us table{
     table-layout: fixed;
 }
 
-th, td {
+.about-us th, .about-us td {
     overflow: hidden;
     width: 42%;
 }
@@ -40,9 +40,17 @@ h2 {
   color: #98D6F5;
 }
 
-.spacer  {
+.about-us .h-spacer  {
   width: 6%; 
 }
+
+.h-spacer  {
+  width: 20px; 
+}
+.v-spacer  {
+  height: 15px; 
+}
+
 
 .listContainer {
   display       : inline-block;

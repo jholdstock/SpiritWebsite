@@ -53,7 +53,7 @@ $app->get('/preview', function () use ($app, $context) {
 //
 $app->error(function (\Exception $e, $code) use ($app, $context) {
 
-	return $app['twig']->render('construction.twig', $context);
+//	return $app['twig']->render('construction.twig', $context);
 
     switch ($code) {
         case 404:
