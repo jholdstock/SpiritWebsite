@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once 'Gallery.php';
 
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
@@ -22,7 +23,9 @@ $app->register(new UrlGeneratorServiceProvider());
 // CONTEXT
 //
 $context = array(
-    
+    "galleries" => array (
+        "corporate" => new Gallery("corporate"),
+    ),
 );
 
 //
@@ -33,24 +36,14 @@ $app->get('/', function () use ($app, $context) {
     return $app['twig']->render('construction.twig', $context);
 })->bind("home");
 
-$app->get('/about-us', function () use ($app, $context) {
-    return $app['twig']->render('about-us.twig', $context);
-})->bind("about-us");
-
-$app->get('/what-we-do', function () use ($app, $context) {
-    return $app['twig']->render('what-we-do.twig', $context);
-})->bind("what-we-do");
-
-$app->get('/contact', function () use ($app, $context) {
-    return $app['twig']->render('contact.twig', $context);
-})->bind("contact");
-
 $app->get('/preview', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
 })->bind("preview");
+
 //
 // ERROR HANDLER
 //
+
 $app->error(function (\Exception $e, $code) use ($app, $context) {
 
 //	return $app['twig']->render('construction.twig', $context);

@@ -4,28 +4,15 @@
     {% include "photoswipe.twig" %}
 
     <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-
+        {% for photo in galleries.corporate.photos %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="/img/bg/1.jpg" itemprop="contentUrl" data-size="1600x1080">
-                <img src="/img/bg/1-sm.jpg" itemprop="thumbnail" alt="Image 1 description" />
+            <a href="{{photo.url}}" itemprop="contentUrl" data-size="{{photo.size}}">
+{# TODO remove height/width when thumbnails generated #}
+                <img src="{{photo.thumbnailUrl}}" itemprop="thumbnail" width="150" height="100" alt="{{photo.caption}}" />
             </a>
-            <figcaption itemprop="caption description">Image 1 caption</figcaption>
-        </figure>
-
-        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="/img/bg/2.jpg" itemprop="contentUrl" data-size="1600x1080">
-                <img src="/img/bg/2-sm.jpg" itemprop="thumbnail" alt="Image 2 description" />
-            </a>
-            <figcaption itemprop="caption description">Image 2 caption</figcaption>
-        </figure>
-
-        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="/img/bg/3.jpg" itemprop="contentUrl" data-size="1600x1080">
-                <img src="/img/bg/3-sm.jpg" itemprop="thumbnail" alt="Image 3 description" />
-            </a>
-            <figcaption itemprop="caption description">Image 3 caption</figcaption>
-        </figure>
-
+            <figcaption itemprop="caption description">{{photo.caption}}</figcaption>
+        </figure>    
+        {% endfor %}
     </div>
 
 </div>
