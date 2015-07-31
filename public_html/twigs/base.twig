@@ -41,6 +41,7 @@
 	</head>
 
 	<body>
+{% include "photoswipe.twig" %}
 
 		<div id="cssmenu">
 			<ul id="menu">
@@ -49,13 +50,9 @@
 				
 				<li class="has-sub"><a href="#"><span>Portfolio</span></a>
 				<ul>
-					<li><a open-div="#gallery"><span>Corporate Events</span></a></li>
-					<li><a href="#"><span>Live Events</span></a></li>
-					<li><a href="#"><span>Architectural</span></a></li>
-					<li><a href="#"><span>Theatre/Television</span></a></li>
-					<li><a href="#"><span>Fashion</span></a></li>
-					<li><a href="#"><span>Exhibitions</span></a></li>
-					<li><a href="#"><span>Concert/Touring</span></a></li>
+				{% for gallery in galleries %}
+					<li><a open-div="#{{gallery.cssName}}"><span>{{gallery.displayName}}</span></a></li>
+				{% endfor %}
 				</ul>
 
 				<li><a open-div="#contact"><span>Contact</span></a>

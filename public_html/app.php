@@ -24,7 +24,13 @@ $app->register(new UrlGeneratorServiceProvider());
 //
 $context = array(
     "galleries" => array (
-        "corporate" => new Gallery("corporate"),
+        new Gallery("automotive", "Automotive"),
+        new Gallery("concert", "Concert/Touring"),
+        new Gallery("corporate", "Corporate"),
+        new Gallery("exhibition", "Exhibitions"),
+        new Gallery("theatre", "Theatre/Television"),
+        new Gallery("fashion", "Fashion"),
+        new Gallery("live", "Live Events"),
     ),
 );
 
