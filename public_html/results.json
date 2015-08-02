@@ -66,6 +66,74 @@
                     "sub": "corporate subcaption 2"
                 }
             }
+        },
+        "exhibition": {
+            "displayName": "Exhibitions",
+            "images": {
+                "1": {
+                    "caption": "exhibition caption 1",
+                    "sub": "exhibition subcaption 1"
+                },
+                "2": {
+                    "caption": "exhibition caption 2",
+                    "sub": "exhibition subcaption 2"
+                },
+                "3": {
+                    "caption": "exhibition caption 3",
+                    "sub": "exhibition subcaption 3"
+                },
+                "4": {
+                    "caption": "exhibition caption 4",
+                    "sub": "exhibition subcaption 4"
+                },
+                "5": {
+                    "caption": "exhibition caption 5",
+                    "sub": "exhibition subcaption 5"
+                }
+            }
+        },
+        "fashion": {
+            "displayName": "Fashion",
+            "images": {
+                "1": {
+                    "caption": "fashion caption 1",
+                    "sub": "fashion subcaption 1"
+                }
+            }
+        },
+        "live": {
+            "displayName": "Live Events",
+            "images": {
+                "1": {
+                    "caption": "live caption 1",
+                    "sub": "live subcaption 1"
+                },
+                "2": {
+                    "caption": "live caption 2",
+                    "sub": "live subcaption 2"
+                },
+                "3": {
+                    "caption": "live caption 3",
+                    "sub": "live subcaption 3"
+                },
+                "4": {
+                    "caption": "live caption 4",
+                    "sub": "live subcaption 4"
+                }
+            }
+        },
+        "theatre": {
+            "displayName": "Theatre/television",
+            "images": {
+                "1": {
+                    "caption": "theatre caption 1",
+                    "sub": "theatre subcaption 1"
+                },
+                "2": {
+                    "caption": "theatre caption 2",
+                    "sub": "theatre subcaption 2"
+                }
+            }
         }
     }
 }

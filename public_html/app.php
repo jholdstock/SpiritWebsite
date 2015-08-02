@@ -92,6 +92,74 @@ $img = array (
                 ),
             )
         ),
+        "exhibition" => array(
+            "displayName" => "Exhibitions",
+            "images" => array(
+                "1" => array(
+                    "caption" => "exhibition caption 1",
+                    "sub" => "exhibition subcaption 1",
+                ),
+                "2" => array(
+                    "caption" => "exhibition caption 2",
+                    "sub" => "exhibition subcaption 2",
+                ),
+                "3" => array(
+                    "caption" => "exhibition caption 3",
+                    "sub" => "exhibition subcaption 3",
+                ),
+                "4" => array(
+                    "caption" => "exhibition caption 4",
+                    "sub" => "exhibition subcaption 4",
+                ),
+                "5" => array(
+                    "caption" => "exhibition caption 5",
+                    "sub" => "exhibition subcaption 5",
+                ),
+            )
+        ),
+        "fashion" => array(
+            "displayName" => "Fashion",
+            "images" => array(
+                "1" => array(
+                    "caption" => "fashion caption 1",
+                    "sub" => "fashion subcaption 1",
+                ),
+            )
+        ),
+        "live" => array(
+            "displayName" => "Live Events",
+            "images" => array(
+                "1" => array(
+                    "caption" => "live caption 1",
+                    "sub" => "live subcaption 1",
+                ),
+                "2" => array(
+                    "caption" => "live caption 2",
+                    "sub" => "live subcaption 2",
+                ),
+                "3" => array(
+                    "caption" => "live caption 3",
+                    "sub" => "live subcaption 3",
+                ),
+                "4" => array(
+                    "caption" => "live caption 4",
+                    "sub" => "live subcaption 4",
+                ),
+            )
+        ),
+        "theatre" => array(
+            "displayName" => "Theatre/television",
+            "images" => array(
+                "1" => array(
+                    "caption" => "theatre caption 1",
+                    "sub" => "theatre subcaption 1",
+                ),
+                "2" => array(
+                    "caption" => "theatre caption 2",
+                    "sub" => "theatre subcaption 2",
+                ),
+            )
+        ),
     )
 );
 
