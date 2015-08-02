@@ -1,15 +1,13 @@
 {% for gallery in galleries %}
 <div id="{{gallery.cssName}}" style="display:none;">
-    {{gallery.displayName}}
-    
     <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
         {% for photo in gallery.photos %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
             <a href="{{photo.url}}" itemprop="contentUrl" data-size="{{photo.size}}" data-subcaption="{{photo.subcaption}}">
 {# TODO remove height/width when thumbnails generated #}
-                <img src="{{photo.thumbnailUrl}}" itemprop="thumbnail" width="150" height="100" alt="{{photo.caption}}" />
+                <img src="{{photo.thumbnailUrl}}" itemprop="thumbnail" alt="{{photo.caption}}" />
             </a>
-            <figcaption itemprop="caption description">{{photo.caption}}</figcaption>
+            <figcaption style="display:none;" itemprop="caption description">{{photo.caption}}</figcaption>
         </figure>    
         {% endfor %}
     </div>
