@@ -5,7 +5,7 @@
     <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
         {% for photo in gallery.photos %}
         <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="{{photo.url}}" itemprop="contentUrl" data-size="{{photo.size}}">
+            <a href="{{photo.url}}" itemprop="contentUrl" data-size="{{photo.size}}" data-subcaption="{{photo.subcaption}}">
 {# TODO remove height/width when thumbnails generated #}
                 <img src="{{photo.thumbnailUrl}}" itemprop="thumbnail" width="150" height="100" alt="{{photo.caption}}" />
             </a>
@@ -48,10 +48,9 @@
                 item = {
                     src: linkEl.getAttribute('href'),
                     w: parseInt(size[0], 10),
-                    h: parseInt(size[1], 10)
+                    h: parseInt(size[1], 10),
+                    subcaption: linkEl.getAttribute('data-subcaption')
                 };
-
-
 
                 if(figureEl.children.length > 1) {
                     // <figcaption> content
@@ -141,6 +140,14 @@
                         rect = thumbnail.getBoundingClientRect(); 
 
                     return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+                },
+                addCaptionHTMLFn: function(item, captionEl, isFake) {
+                    if(!item.title) {
+                        captionEl.children[0].innerText = '';
+                        return false;
+                    }
+                    captionEl.children[0].innerHTML = item.title +  '<br/><small>' + item.subcaption + '</small>';
+                    return true;
                 }
 
             };
