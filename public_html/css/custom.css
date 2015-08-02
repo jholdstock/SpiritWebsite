@@ -12,9 +12,9 @@ h2 {
 }
 
 #logo {
-  position: absolute;
+  position: fixed;
   bottom  : 0;
-  width   : 100%;
+  width   : 220px;
   padding : 20px;
 }
 
