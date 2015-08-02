@@ -47,6 +47,14 @@ var ajaxCompleted = function(data, textStatus, jqXHR) {
 var linkHandler = function(e) {
 	e.preventDefault();
 
+	$(".active-menu").removeClass("active-menu");
+
+	var $clicked = $(e.target);
+	if ($clicked.prop("tagName") != "SPAN") {
+		$clicked = $clicked.find("span");
+	};
+	$clicked.addClass("active-menu");
+
 	var content = $("#content");
 	content.children().hide();
 

@@ -1,3 +1,7 @@
+.active-menu {
+  color: #98D6F5;
+}
+
 #cssmenu a {
   text-align: center;
   color: white;
@@ -43,7 +47,7 @@
   /* top level elements*/
   padding: 14px 0;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   box-sizing: border-box;
   text-transform: uppercase;
 }
@@ -58,7 +62,7 @@
   /* Sub elements */
   font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: none;
   padding: 16px 20px;
   color: #999;
