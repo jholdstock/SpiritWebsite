@@ -29,7 +29,7 @@ $json_a = json_decode($string, true);
 $galleries = array();
 
 foreach($json_a['galleries'] as $key => $value) {
-    array_push($galleries, new Gallery($key, $value["displayName"]));
+    array_push($galleries, new Gallery($key, $value));
 }
 
 $context = array(
