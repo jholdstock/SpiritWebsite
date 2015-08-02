@@ -2,16 +2,17 @@
 <div id="{{gallery.cssName}}" style="display:none;">
     <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
         {% for photo in gallery.photos %}
-        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="{{photo.url}}" itemprop="contentUrl" data-size="{{photo.size}}" data-subcaption="{{photo.subcaption}}">
-{# TODO remove height/width when thumbnails generated #}
-                <img src="{{photo.thumbnailUrl}}" itemprop="thumbnail" alt="{{photo.caption}}" />
+        <div class="thumbnail">
+            <a href="{{photo.url}}"
+                data-size="{{photo.size}}" 
+                data-caption="{{photo.caption}}" 
+                data-subcaption="{{photo.subcaption}}"
+            >
+                <img src="{{photo.thumbnailUrl}}" alt="{{photo.caption}}" />
             </a>
-            <figcaption style="display:none;" itemprop="caption description">{{photo.caption}}</figcaption>
-        </figure>    
+        </div>    
         {% endfor %}
     </div>
-
 </div>
 {% endfor %}    
 
@@ -47,13 +48,9 @@
                     src: linkEl.getAttribute('href'),
                     w: parseInt(size[0], 10),
                     h: parseInt(size[1], 10),
-                    subcaption: linkEl.getAttribute('data-subcaption')
+                    subcaption: linkEl.getAttribute('data-subcaption'),
+                    title: linkEl.getAttribute('data-caption'),
                 };
-
-                if(figureEl.children.length > 1) {
-                    // <figcaption> content
-                    item.title = figureEl.children[1].innerHTML; 
-                }
 
                 if(linkEl.children.length > 0) {
                     // <img> thumbnail element, retrieving thumbnail url
@@ -81,7 +78,7 @@
 
             // find root element of slide
             var clickedListItem = closest(eTarget, function(el) {
-                return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+                return (el.tagName && el.className === "thumbnail");
             });
 
             if(!clickedListItem) {
@@ -107,8 +104,6 @@
                 }
                 nodeIndex++;
             }
-
-
 
             if(index >= 0) {
                 // open PhotoSwipe if valid index found

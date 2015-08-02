@@ -91,15 +91,12 @@ h2 {
 }
 
 .my-gallery figure img {
-  width : 150px;
-  height: 100px;
 }
 
 .my-gallery figure:first-of-type img {
-  width : 450px;
-  height: 300px;
 }
 
 .my-gallery figure {
   display: inline;
+  margin: 0;
 }
