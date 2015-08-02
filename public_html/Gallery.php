@@ -6,19 +6,21 @@ class Gallery {
 
     	$this->displayName = $gallery_json["displayName"];
     	$this->cssName = "gallery-$dir";
-     	$dir = "img/galleries/$dir/";
-     	$filesInDir = scandir($dir);
+     	$imgDir = "img/galleries/$dir/";
+        $thumbDir = "img/thumbnails/$dir/";
+     	$filesInDir = scandir($imgDir);
      	$this->photos = array();
      	foreach ($filesInDir as $fileName) {
      		if ($fileName == "." || $fileName == "..") continue;
-            $filePath = $dir.$fileName;
-            $pathInfo = pathInfo($filePath);
+            $imgPath   = $imgDir  .$fileName;
+            $thumbPath = $thumbDir.$fileName;
+            
+            $pathInfo = pathInfo($imgPath);
             $fileName = $pathInfo["filename"];
-
-
             $gallery = $gallery_json["images"][$fileName];
+
      		// TODO put thumbnails in once generated
-   			array_push($this->photos, new Photo($filePath, "/img/bg/1-sm.jpg", $gallery["caption"], $gallery["sub"]));
+   			array_push($this->photos, new Photo($imgPath, $thumbPath, $gallery["caption"], $gallery["sub"]));
      	}
     }
 }
