@@ -23,160 +23,17 @@ $app->register(new UrlGeneratorServiceProvider());
 // CONTEXT
 //
 
-$img = array (
-    "galleries" => array(
-        "automotive" => array(
-            "displayName" => "Automotive",
-            "images" => array(
-                "1" => array(
-                    "caption" => "automotive caption 1",
-                    "sub" => "automotive subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "automotive caption 2",
-                    "sub" => "automotive subcaption 2",
-                ),
-                "3" => array(
-                    "caption" => "automotive caption 3",
-                    "sub" => "automotive subcaption 3",
-                ),
-                "4" => array(
-                    "caption" => "automotive caption 4",
-                    "sub" => "automotive subcaption 4",
-                ),
-                "5" => array(
-                    "caption" => "automotive caption 5",
-                    "sub" => "automotive subcaption 5",
-                ),
-            )
-        ),
-         "concert" => array(
-            "displayName" => "Concert/Touring",
-            "images" => array(
-                "1" => array(
-                    "caption" => "concert caption 1",
-                    "sub" => "concert subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "concert caption 2",
-                    "sub" => "concert subcaption 2",
-                ),
-                "3" => array(
-                    "caption" => "concert caption 3",
-                    "sub" => "concert subcaption 3",
-                ),
-                "4" => array(
-                    "caption" => "concert caption 4",
-                    "sub" => "concert subcaption 4",
-                ),
-                "5" => array(
-                    "caption" => "concert caption 5",
-                    "sub" => "concert subcaption 5",
-                ),
-                "6" => array(
-                    "caption" => "concert caption 6",
-                    "sub" => "concert subcaption 6",
-                ),
-            )
-        ),
-        "corporate" => array(
-            "displayName" => "Corporate",
-            "images" => array(
-                "1" => array(
-                    "caption" => "corporate caption 1",
-                    "sub" => "corporate subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "corporate caption 2",
-                    "sub" => "corporate subcaption 2",
-                ),
-            )
-        ),
-        "exhibition" => array(
-            "displayName" => "Exhibitions",
-            "images" => array(
-                "1" => array(
-                    "caption" => "exhibition caption 1",
-                    "sub" => "exhibition subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "exhibition caption 2",
-                    "sub" => "exhibition subcaption 2",
-                ),
-                "3" => array(
-                    "caption" => "exhibition caption 3",
-                    "sub" => "exhibition subcaption 3",
-                ),
-                "4" => array(
-                    "caption" => "exhibition caption 4",
-                    "sub" => "exhibition subcaption 4",
-                ),
-                "5" => array(
-                    "caption" => "exhibition caption 5",
-                    "sub" => "exhibition subcaption 5",
-                ),
-            )
-        ),
-        "fashion" => array(
-            "displayName" => "Fashion",
-            "images" => array(
-                "1" => array(
-                    "caption" => "fashion caption 1",
-                    "sub" => "fashion subcaption 1",
-                ),
-            )
-        ),
-        "live" => array(
-            "displayName" => "Live Events",
-            "images" => array(
-                "1" => array(
-                    "caption" => "live caption 1",
-                    "sub" => "live subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "live caption 2",
-                    "sub" => "live subcaption 2",
-                ),
-                "3" => array(
-                    "caption" => "live caption 3",
-                    "sub" => "live subcaption 3",
-                ),
-                "4" => array(
-                    "caption" => "live caption 4",
-                    "sub" => "live subcaption 4",
-                ),
-            )
-        ),
-        "theatre" => array(
-            "displayName" => "Theatre/television",
-            "images" => array(
-                "1" => array(
-                    "caption" => "theatre caption 1",
-                    "sub" => "theatre subcaption 1",
-                ),
-                "2" => array(
-                    "caption" => "theatre caption 2",
-                    "sub" => "theatre subcaption 2",
-                ),
-            )
-        ),
-    )
-);
+$string = file_get_contents("results.json");
+$json_a = json_decode($string, true);
 
-$fp = fopen('results.json', 'w');
-fwrite($fp, json_encode($img));
-fclose($fp);
+$galleries = array();
+
+foreach($json_a['galleries'] as $key => $value) {
+    array_push($galleries, new Gallery($key, $value["displayName"]));
+}
 
 $context = array(
-    "galleries" => array (
-        new Gallery("automotive", "Automotive"),
-        new Gallery("concert", "Concert/Touring"),
-        new Gallery("corporate", "Corporate"),
-        new Gallery("exhibition", "Exhibitions"),
-        new Gallery("theatre", "Theatre/Television"),
-        new Gallery("fashion", "Fashion"),
-        new Gallery("live", "Live Events"),
-    ),
+    "galleries" => $galleries,
 );
 
 //
