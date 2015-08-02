@@ -5,7 +5,7 @@ class Gallery {
     public function __construct($dir, $displayName) {
     	$this->displayName = $displayName;
     	$this->cssName = "gallery-$dir";
-     	$dir = "img/$dir/";
+     	$dir = "img/galleries/$dir/";
      	$filesInDir = scandir($dir);
      	$this->photos = array();
      	foreach ($filesInDir as $fileName) {
