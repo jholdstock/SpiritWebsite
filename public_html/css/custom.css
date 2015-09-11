@@ -32,7 +32,12 @@ h2 {
   text-align      : center;
 }
 
-#footer a {
+#contact-table #fb-logo {
+  height: 25px;
+  width : 25px;
+  margin-left: 6px;
+}
+#footer a, #contact-table a {
   color          : #D0D0D0;
   text-decoration: none;
 }
