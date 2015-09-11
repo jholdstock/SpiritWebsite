@@ -32,6 +32,15 @@ h2 {
   text-align      : center;
 }
 
+#footer a {
+  color          : #D0D0D0;
+  text-decoration: none;
+}
+#footer #fb-logo {
+  height: 25px;
+  width : 25px;
+  margin: 5px 2px 0px 25px;
+}
 #footer {
   position   : fixed;
   bottom     : 0;
