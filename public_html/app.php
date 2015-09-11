@@ -23,17 +23,20 @@ $app->register(new UrlGeneratorServiceProvider());
 // CONTEXT
 //
 
-$string = file_get_contents("results.json");
+// Photo galleries
+$string = file_get_contents("photo-galleries.json");
 $json_a = json_decode($string, true);
-
 $galleries = array();
-
 foreach($json_a['galleries'] as $key => $value) {
     array_push($galleries, new Gallery($key, $value));
 }
 
+// Background photos
+$bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
+
 $context = array(
     "galleries" => $galleries,
+    "bgImages" => $bgImages,
 );
 
 //

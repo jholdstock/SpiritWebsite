@@ -91,6 +91,14 @@
 		
 	</body>
 
+	<script>
+		var bgImages = [
+			{% for image in bgImages %}
+			{ src: "img/bg/{{ image }}" },
+			{% endfor %}
+		];
+	</script>
+
 	<script src="/js/main.js"></script>
 
 </html>

@@ -1,15 +1,11 @@
 $('body').vegas({
 	color: "black",
 	timer: false,
-	delay: 15000,
+	delay: 12000,
 	transitionDuration: 5000,
 	transition: "fade2",
 	overlay: "/js/vendor/vegas/overlays/02.png",
-  slides: [
-	  { src: '/img/bg/1.jpg' },
-	  { src: '/img/bg/2.jpg' },
-	  { src: '/img/bg/3.jpg' }
-  ],
+  slides: bgImages,
 });
 
 var activateMenu = function() { 
