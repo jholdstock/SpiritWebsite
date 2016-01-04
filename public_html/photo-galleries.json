@@ -13,14 +13,14 @@
                 },
                 "3": {
                     "caption": "SWIFT Launch",
-                    "sub": "Somewhere"
+                    "sub": ""
                 },
                 "4": {
                     "caption": "General Motors",
                     "sub": "Cologne"
                 },
                 "5": {
-                    "caption": "Unknown",
+                    "caption": "",
                     "sub": ""
                 }
             }
@@ -105,7 +105,7 @@
             "displayName": "Live Events",
             "images": {
                 "1": {
-                    "caption": "Unknown",
+                    "caption": "",
                     "sub": ""
                 },
                 "2": {
@@ -117,7 +117,7 @@
                     "sub": ""
                 },
                 "4": {
-                    "caption": "Unknown",
+                    "caption": "",
                     "sub": ""
                 }
             }
