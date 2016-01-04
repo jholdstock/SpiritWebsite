@@ -42,13 +42,27 @@
 			<tr class="v-spacer"></tr>
 
 			<tr>
-				<td><a href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706"><img src="/img/fb.png" id="fb-logo" /></a></td>
+				<td><a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706"><img src="/img/fb.png" id="fb-logo" /></a></td>
 				<td class="h-spacer"></td>
-				<td><a href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706">Find us on Facebook</a></td>
+				<td><a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706">Find us on Facebook</a></td>
 			</tr>
 		</table>
 
 	</div>
 
-	<iframe class="inline" width="500" height="400" frameborder="0" style="margin: 20px; border:0;" src="https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"></iframe>
+	<iframe class="inline map" width="500" height="400" frameborder="0" style="margin: 20px; border:0;" src="https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"></iframe>
 </div>
+
+<script>
+	
+function setMapSize() {
+		var width = $('iframe').parent().width() - 50;
+		if ($(window).width() < 1013)
+	  		$('iframe').width(width);
+	  	else
+	  		$('iframe').width(500);
+};
+
+	$( window ).resize(setMapSize);
+
+</script>
