@@ -44,12 +44,8 @@ $context = array(
 //
 
 $app->get('/', function () use ($app, $context) {
-    return $app['twig']->render('construction.twig', $context);
-})->bind("home");
-
-$app->get('/preview', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
-})->bind("preview");
+})->bind("home");
 
 //
 // ERROR HANDLER
@@ -57,17 +53,21 @@ $app->get('/preview', function () use ($app, $context) {
 
 $app->error(function (\Exception $e, $code) use ($app, $context) {
 
-//	return $app['twig']->render('construction.twig', $context);
+    if ($code == 404) {
+        $context = array(
+            "httpStatus" => "404 Not Found",
+            "sub" => "The requested page could not be found. Please try the <a href='/'>home page</a> instead."
+        );
 
-    switch ($code) {
-        case 404:
-            $message = 'The requested page could not be found.';
-            break;
-        default:
-            $message = 'Something went terribly wrong.';
-            var_dump($e);
+        return $app['twig']->render('error.twig', $context);
+    } else {
+        $context = array(
+            "httpStatus" => "500 Internal Error",
+            "sub" => "Something has gone wrong. Please try again later"
+        );
+
+        return $app['twig']->render('error.twig', $context);
     }
-    return new Response($message);
 });
 
 $app->run();
