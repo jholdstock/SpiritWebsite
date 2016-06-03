@@ -23,23 +23,17 @@
 
     <script>
     	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>');
-			
-			$(function() {
-		    $('#about-us-form').areYouSure();
-		  });
-
     </script>
 
-
 		<style>
-			  
 			body {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				background: #F0F0F0;
 			}
 
 			h2 {
-				margin-left: 15px;
+				margin-left: 2em;
+				margin-top: 2em;
 			}
 
 			textarea {
@@ -87,8 +81,7 @@
 				font-size:15px;
 				font-weight:bold;
 				padding:5px 10px;
-				margin-bottom: 1em;
-				margin-left: 1em;
+				margin: 1em;
 				text-decoration:none;
 				text-shadow:0px -1px 0px #2b665e;
 			}
@@ -115,16 +108,32 @@
 
 	<body>
 		<h2 style="display:inline; margin-right:8em;">About us</h2>
-		<button type="submit" form="about-us-form">Save Changes</button>
+		<button type="submit" onclick="return checkIfAnyValueChanged();" form="about-us-form">Save Changes</button>
 		<form id="about-us-form" method="get">
 			{% for i in 1..6 %}
-				<textarea type="text" name="heading{{i}}" cols="60" rows="1" class="about-us-heading">{{ strings["about-us"][i]["heading"] }}</textarea>
-				<textarea type="text" name="text{{i}}"    cols="70" rows="8" class="about-us-text"   >{{ strings["about-us"][i]["text"] }}</textarea>
+				<textarea type="text" name="heading{{i}}" cols="60" rows="1" class="submitOnlyChanged">{{ strings["about-us"][i]["heading"] }}</textarea>
+				<textarea type="text" name="text{{i}}"    cols="70" rows="8" class="submitOnlyChanged"   >{{ strings["about-us"][i]["text"] }}</textarea>
 				<br /><br />
 			{% endfor %}
 		</form>
-		<button type="submit" form="about-us-form">Save Changes</button>
+	
+		<script>
+			$(function() {
+		    $('#about-us-form').areYouSure();
+				$("#about-us-form").submit(function() {
+				    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
+				});
+		  });
+
+			var anyInputChanged = false;
+			var checkIfAnyValueChanged = function(){ 
+				if (anyInputChanged == false) {
+					alert("No changes to save");
+				}
+				return anyInputChanged; 
+			};
+			$('.submitOnlyChanged').change(function(){ anyInputChanged = true; });
+		</script>
+
 	</body>
-
-
 </html>
