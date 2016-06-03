@@ -56,9 +56,12 @@ $app->get('/', function () use ($app, $context) {
 })->bind("home");
 
 $app->get('/admin', function () use ($app, $context) {
-    return $app['twig']->render('admin.twig', $context);
+    return $app['twig']->render('admin/menu.twig', $context);
 })->bind("admin");
 
+$app->get('/edit-about-us', function () use ($app, $context) {
+    return $app['twig']->render('admin/edit-about-us.twig', $context);
+})->bind("edit-about-us");
 //
 // ERROR HANDLER
 //
