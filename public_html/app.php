@@ -55,12 +55,15 @@ $app->get('/', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
 })->bind("home");
 
+$app->get('/admin', function () use ($app, $context) {
+    return $app['twig']->render('admin.twig', $context);
+})->bind("admin");
+
 //
 // ERROR HANDLER
 //
 
 $app->error(function (\Exception $e, $code) use ($app, $context) {
-
     if ($code == 404) {
         $context = array(
             "httpStatus" => "404 Not Found",
