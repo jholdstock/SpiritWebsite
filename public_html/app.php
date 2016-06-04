@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once 'Gallery.php';
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
@@ -22,6 +22,13 @@ $app->register(new UrlGeneratorServiceProvider());
 //
 // CONTEXT
 //
+
+function vdump($obj) {
+    echo '<pre>';
+    var_dump($obj);
+    echo '</pre>';
+    return null;
+}
 
 function loadJson($filePath) {
     $string = file_get_contents($filePath);
@@ -46,6 +53,8 @@ $context = array(
     "bgImages"  => $bgImages,
     "strings"   => $strings,
 );
+echo("Strings");
+vdump($strings["about-us"]);
 
 //
 // ROUTING
@@ -62,6 +71,13 @@ $app->get('/admin', function () use ($app, $context) {
 $app->get('/edit-about-us', function () use ($app, $context) {
     return $app['twig']->render('admin/edit-about-us.twig', $context);
 })->bind("edit-about-us");
+
+$app->post('/edit-about-us', function (Request $request) use ($app, $context) {
+    echo("Params");
+    vdump($request->request->get("about-us"));
+    die;
+    return $app['twig']->render('admin/edit-about-us.twig', $context);
+})->bind("post-edit-about-us");
 
 $app->get('/edit-what-we-do', function () use ($app, $context) {
     return $app['twig']->render('admin/edit-what-we-do.twig', $context);
