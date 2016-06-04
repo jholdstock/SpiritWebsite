@@ -3,14 +3,11 @@
 {% endblock head %}
 
 {% block body %}
-		<h2 style="display:inline; margin-right:8em;">About us</h2>
+		<h2 style="display:inline; margin-right:8em;">What we do</h2>
 		<button type="submit" onclick="return checkIfAnyValueChanged();" form="about-us-form">Save Changes</button>
 		<form id="about-us-form" method="get">
-		{% for i in 1..6 %}
-			<textarea type="text" name="heading{{i}}" cols="70" rows="1" class="submitOnlyChanged">{{ strings["about-us"][i]["heading"] }}</textarea>
-			<textarea type="text" name="text{{i}}"    cols="80" rows="8" class="submitOnlyChanged"   >{{ strings["about-us"][i]["text"] }}</textarea>
+			<textarea type="text" name="heading" cols="70" rows="1" class="submitOnlyChanged">{{ strings["what-we-do"]["0"]["heading"] }}</textarea>
 			<br /><br />
-		{% endfor %}
 		</form>
 	
 		<script>

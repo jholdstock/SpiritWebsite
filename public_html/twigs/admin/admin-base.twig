@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>Spirit Design UK - Admin</title>
 		
@@ -12,29 +11,24 @@
 
 		<!-- Style -->
 		<link href="//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-		<link rel="sho<!-- Style -->rtcut icon" href="img/favicon.ico" />
+		<link rel="shortcut icon" href="img/favicon.ico" />
 		
 		<!-- Script -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		
+		<!-- AreYouSure? -->
+		<script src="/js/vendor/areyousure/jquery.are-you-sure.js"></script>
+		<script src="/js/vendor/areyousure/ays-beforeunload-shim.js"></script>
+
+		<!-- Style -->
+		<link rel="stylesheet" type="text/css" href="css/admin.css" />
 
     <script>
     	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>');
     </script>
 		
 		<style>
-			body {
-				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-				background: #F0F0F0;
-			}
 
-			h2 {
-				margin-left: 2em;
-				margin-top: 2em;
-			}
-
-			html {
-				color: #2a2b23;				
-			}
 		</style>
 
 		{% block head %}
@@ -43,8 +37,11 @@
 	</head>
 
 	<body>
+		<div id="top-menu">
+			<a href="/edit-about-us">About Us</a>
+			<a href="/edit-what-we-do">What we do</a>
+		</div>
 		{% block body %}
 		{% endblock %}
-
 	</body>
 </html>
