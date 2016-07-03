@@ -140,3 +140,13 @@ h2 {
     margin-left: 280px;
   }
 }
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.items .item {
+  flex: 1 0 200px;
+  box-sizing: border-box;
+  padding: 10px;
+}
