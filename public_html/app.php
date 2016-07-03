@@ -73,7 +73,7 @@ $app->get('/admin', function () use ($app, $context) {
     return $app['twig']->render('admin/admin-base.twig', $context);
 })->bind("admin");
 
-$editPages = array("what-we-do", "about-us", "contact");
+$editPages = array("about-us", "contact");
 
 foreach ($editPages as $page) {
     $app->get("/edit-$page", function () use ($app, $context, $page) {
@@ -88,6 +88,23 @@ foreach ($editPages as $page) {
         return $app["twig"]->render("admin/edit-$page.twig", $context);
     })->bind("post-edit-$page");
 }
+
+$app->get("/edit-what-we-do", function () use ($app, $context) {
+    return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
+})->bind("edit-what-we-do");
+
+$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
+    $newStrings = $request->request->get("what-we-do");
+    $rawRecentClients = $newStrings["recent-clients"];
+    $parsedRecentClients = explode(PHP_EOL, $rawRecentClients);
+    $parsedRecentClients = array_map('trim', $parsedRecentClients);
+    $parsedRecentClients = array_filter($parsedRecentClients);
+    $newStrings["recent-clients"] = $parsedRecentClients;
+    $strings["what-we-do"] = $newStrings;
+    writeJson($strings, $stringsFilePath);
+    $context["strings"] = $strings;
+    return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
+})->bind("post-edit-what-we-do");
 //
 // ERROR HANDLER
 //

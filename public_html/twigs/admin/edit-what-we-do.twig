@@ -7,5 +7,7 @@
 {% block editForm %}
 	<form id="edit-strings-form" method="post" action="/edit-what-we-do">
 			<textarea type="text" name="what-we-do[text]" cols="80" rows="8">{{ strings["what-we-do"]["text"] }}</textarea>
+			<textarea type="text" name="what-we-do[recent-clients]" cols="80" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}
+		</textarea>
 	</form>
 {% endblock %}

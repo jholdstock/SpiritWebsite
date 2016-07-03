@@ -26,7 +26,37 @@
         }
     },
     "what-we-do": {
-    	"text": "Spirit Design offers a broad spectrum of services from the simplest provision of static lighting to the power distribution, lighting design and rigging installation on events worldwide. We strive to always provide total flexibility, imaginative solutions and real value for money."
+    	"text": "Spirit Design offers a broad spectrum of services from the simplest provision of static lighting to the power distribution, lighting design and rigging installation on events worldwide. We strive to always provide total flexibility, imaginative solutions and real value for money.",
+    	"recent-clients": {
+    		"1": "HSBC",
+				"2": "GOOGLE",
+				"3": "WPP Plc",
+				"4": "ITV",
+				"5": "HEWLETT PACKARD",
+				"6": "HYUNDAI",
+				"7": "GAZPROM",
+				"8": "VM WARE",
+				"9": "LEGO",
+				"10": "DISCLOSURE",
+				"11": "SANOFI",
+				"12": "GENERAL MOTORS",
+				"13": "LONDON CONTEMPORARY VOICES",
+				"14": "WELLA",
+				"15": "SAMSUNG",
+				"16": "MERCEDES",
+				"17": "SAM SMITH",
+				"18": "IBM",
+				"19": "DE VERE HOTELS",
+				"20": "JCB",
+				"21": "NULL PARADOX",
+				"22": "UNDER ARMOUR",
+				"23": "LUNDBECK",
+				"24": "BIBA",
+				"25": "DEUTCHE BANK",
+				"26": "TWITTER",
+				"27": "UEFA",
+				"28": "SASSOON"
+    	}
     },
     "contact": {
         "email": "spirit@spiritdesignuk.com",

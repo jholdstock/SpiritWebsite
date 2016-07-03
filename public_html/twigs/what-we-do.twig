@@ -26,33 +26,8 @@
 	
 	<h2>Recent Clients</h2>
 	<div class="items">
-		<div class="item">HSBC</div>
-		<div class="item">GOOGLE</div>
-		<div class="item">WPP Plc</div>
-		<div class="item">ITV</div>
-		<div class="item">HEWLETT PACKARD</div>
-		<div class="item">HYUNDAI</div>
-		<div class="item">GAZPROM</div>
-		<div class="item">VM WARE</div>
-		<div class="item">LEGO</div>
-		<div class="item">DISCLOSURE</div>
-		<div class="item">SANOFI</div>
-		<div class="item">GENERAL MOTORS</div>
-		<div class="item">LONDON CONTEMPORARY VOICES</div>
-		<div class="item">WELLA</div>
-		<div class="item">SAMSUNG</div>
-		<div class="item">MERCEDES</div>
-		<div class="item">SAM SMITH</div>
-		<div class="item">IBM</div>
-		<div class="item">DE VERE HOTELS</div>
-		<div class="item">JCB</div>
-		<div class="item">NULL PARADOX</div>
-		<div class="item">UNDER ARMOUR</div>
-		<div class="item">LUNDBECK</div>
-		<div class="item">BIBA</div>
-		<div class="item">DEUTCHE BANK</div>
-		<div class="item">TWITTER</div>
-		<div class="item">UEFA</div>
-		<div class="item">SASSOON</div>
+		{% for string in strings["what-we-do"]["recent-clients"] %}
+			<div class="item">{{ string }}</div>
+		{% endfor %}
 	</div>
 </div>
