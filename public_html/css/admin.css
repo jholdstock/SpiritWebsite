@@ -12,13 +12,17 @@ html {
   color: #2a2b23;
 }
 
-#menu {
+#top-menu a {
   margin-bottom: 1em;
+  padding: 1em;
 }
 
-textarea {
+textarea, input, button, select { font-family: inherit; font-size: inherit; }
+
+textarea, input {
   display: block;
   margin-top: 10px;
+  margin-bottom: 10px;
   margin-left: 10px;
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
   border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
@@ -33,7 +37,7 @@ textarea {
   padding: 5px 8px;
 }
 
-textarea:focus {
+textarea:focus, input:focus {
   background: none repeat scroll 0 0 #FFFFFF;
   outline-width: 0;
 }

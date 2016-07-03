@@ -26,7 +26,24 @@
         }
     },
     "what-we-do": {
+    	"heading1": "We Cover",
+    	"list1": {
+				"1": "Concert Touring/Live Music",
+				"2": "Exhibition/Corporate",
+				"3": "Fashion",
+				"4": "Architectural",
+				"5": "Television",
+				"6": "Theatre/Live Events"
+  		},
+    	"heading2": "We Guarantee",
+    	"list2": {
+    		"1": "Creative excellence and unique design solutions.",
+				"2": "Comprehensive technical expertise in all production areas.",
+				"3": "The latest visualisation software.",
+				"4": "Round the clock technical support."
+  		},
     	"text": "Spirit Design offers a broad spectrum of services from the simplest provision of static lighting to the power distribution, lighting design and rigging installation on events worldwide. We strive to always provide total flexibility, imaginative solutions and real value for money.",
+        "recent-clients-heading": "Recent Clients",
     	"recent-clients": {
     		"1": "HSBC",
 				"2": "GOOGLE",
@@ -62,6 +79,15 @@
         "email": "spirit@spiritdesignuk.com",
         "telephone": "+44(0)20 8995 5581",
         "fax": "+44(0)20 8995 7781",
-        "facebook": "Find us on Facebook"
+        "facebook": "Find us on Facebook",
+        "address": {
+            "1": "Spirit Design Ltd",
+            "2": "Grove Park Studios",
+            "3": "188-192 Sutton Court Road",
+            "4": "Chiswick",
+            "5": "London",
+            "6": "W4 3HR"
+        },
+        "map-url": "https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"
     }
 }

@@ -6,12 +6,9 @@
 				<td valign="top">{% include "icon_address.twig" %}</td>
 				<td class="h-spacer"></td>
 				<td>
-					Spirit Design Ltd<br />
-					Grove Park Studios<br />
-					188-192 Sutton Court Road<br />
-					Chiswick<br />
-					London<br />
-					W4 3HR
+					{% for string in strings["contact"]["address"] %}
+						{{ string }}<br />
+					{% endfor %}
 				</td>
 			</tr>
 			
@@ -50,7 +47,7 @@
 
 	</div>
 
-	<iframe class="inline map" width="500" height="400" frameborder="0" style="margin: 20px; border:0;" src="https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"></iframe>
+	<iframe class="inline map" width="500" height="400" frameborder="0" style="margin: 20px; border:0;" src="{{ strings["contact"]["map-url"] }}"></iframe>
 </div>
 
 <script>

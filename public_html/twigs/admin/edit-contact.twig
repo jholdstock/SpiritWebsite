@@ -5,43 +5,27 @@
 {% endblock %}
 
 {% block editForm %}
-	<style>
-		.info, .success, .warning, .error {
-			border: 1px solid;
-			margin: 10px 0px;
-			padding:15px 10px 15px 50px;
-			background-repeat: no-repeat;
-			background-position: 10px center;
-			width: 500px;
-		}
-		.info {
-			color: #00529B;
-			background-color: #BDE5F8;
-			background-image: url('img/info.png');
-		}	
-		.success {
-			color: #4F8A10;
-			background-color: #DFF2BF;
-			background-image:url('img/success.png');
-		}	
-		.warning {
-			color: #9F6000;
-			background-color: #FEEFB3;
-			background-image: url('img/warning.png');
-		}	
-		.error {
-			color: #D8000C;
-			background-color: #FFBABA;
-			background-image: url('img/error.png');
-		}	
-	</style>
 
-	<div class="info">Changing these values will update both the contact page and the footer at the bottom of every page</div>
 
 	<form id="edit-strings-form" method="post" action="/edit-contact">
-			<textarea type="text" name="contact[telephone]" cols="70" rows="1">{{ strings["contact"]["telephone"] }}</textarea>
-			<textarea type="text" name="contact[fax]" cols="70" rows="1">{{ strings["contact"]["fax"] }}</textarea>
-			<textarea type="text" name="contact[email]" cols="70" rows="1">{{ strings["contact"]["email"] }}</textarea>
-			<textarea type="text" name="contact[facebook]" cols="70" rows="1">{{ strings["contact"]["facebook"] }}</textarea>
+			Address: 
+			<textarea type="text" name="contact[address]" cols="60" rows="7">{% for string in strings["contact"]["address"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+			Telephone:
+
+			<div class="info">Changing these values will update both the contact page and the footer at the bottom of every page</div>
+			<input type="text" size="30" name="contact[telephone]" value="{{ strings["contact"]["telephone"] }}"></input>
+			Fax:
+			<input type="text" size="30" name="contact[fax]" value="{{ strings["contact"]["fax"] }}"></input>
+			Email:
+			<input type="text" size="30" name="contact[email]" value="{{ strings["contact"]["email"] }}"></input>
+			Facebook:
+			<input type="text" size="30" name="contact[facebook]" value="{{ strings["contact"]["facebook"] }}"></input>
+
+			<div class="info"><p>To update the map URL, find the location you want in Google Maps and click on share. Click on "Embed map" and take only the url contained inside src="". This URL can be very long.</p>
+			<p>EG.</p>
+				<tt>&lt;iframe src="<span style="font-weight:bolder; color: #00243B">https://www.google.com/maps/embed?pb=!2sEmpire+State+Building!5e0!3m2!1sen!2sus!4v1467569804430</span>" width="600" height="450" frameborder="0" style="border:0" allowfullscreen&gt;&lt;/iframe&gt;</tt>
+			</p> </div>
+			Map URL:
+			<input type="text" size="130" name="contact[map-url]" value="{{ strings["contact"]["map-url"] }}"></input>
 	</form>
 {% endblock %}

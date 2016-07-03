@@ -29,7 +29,7 @@
   background: linear-gradient(to right,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 48%,rgba(0,0,0,0) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
 
-  padding-top: 60px;
+  padding-top: 40px;
   position: fixed;
   left: 0;
   top: 0;

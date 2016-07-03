@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block editForm %}
+
+	<div class="warning">When updating any list the layout of the page may change. Check the page after updating to ensure it looks correct</div>
+
 	<form id="edit-strings-form" method="post" action="/edit-what-we-do">
+			<input type="text" size="50" maxlength="50" name="what-we-do[heading1]" value="{{ strings["what-we-do"]["heading1"] }}"></input>
+			<textarea type="text" name="what-we-do[list1]" cols="60" rows="8">{% for string in strings["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+			<input type="text" size="50" maxlength="50" name="what-we-do[heading2]" value="{{ strings["what-we-do"]["heading2"] }}"></input>
+			<textarea type="text" name="what-we-do[list2]" cols="60" rows="8">{% for string in strings["what-we-do"]["list2"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 			<textarea type="text" name="what-we-do[text]" cols="80" rows="8">{{ strings["what-we-do"]["text"] }}</textarea>
-			<textarea type="text" name="what-we-do[recent-clients]" cols="80" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}
-		</textarea>
+			<input type="text" size="50" maxlength="50" name="what-we-do[recent-clients-heading]" value="{{ strings["what-we-do"]["recent-clients-heading"] }}"></input>
+			<textarea type="text" name="what-we-do[recent-clients]" cols="60" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 	</form>
 {% endblock %}
