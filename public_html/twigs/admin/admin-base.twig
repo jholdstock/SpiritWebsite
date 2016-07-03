@@ -12,25 +12,11 @@
 		<!-- Style -->
 		<link href="//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 		<link rel="shortcut icon" href="img/favicon.ico" />
-		
-		<!-- Script -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		
-		<!-- AreYouSure? -->
-		<script src="/js/vendor/areyousure/jquery.are-you-sure.js"></script>
-		<script src="/js/vendor/areyousure/ays-beforeunload-shim.js"></script>
 
 		<!-- Style -->
 		<link rel="stylesheet" type="text/css" href="css/admin.css" />
 
-    <script>
-    	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>');
-    </script>
 		
-		<style>
-
-		</style>
-
 		{% block head %}
 		{% endblock %}
 
@@ -44,4 +30,8 @@
 		{% block body %}
 		{% endblock %}
 	</body>
+	
+	{% block extraJs %}
+	{% endblock %}
+
 </html>

@@ -10,6 +10,9 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 
 $app = new Application();
 
+$stringsFilePath = "strings.json";
+$galleriesFilePath = "photo-galleries.json";
+
 //
 // REGISTER SERVICES
 //
@@ -35,15 +38,19 @@ function loadJson($filePath) {
     return json_decode($string, true);
 }
 
+function writeJson($obj, $filePath) {
+    file_put_contents($filePath, json_encode($obj));
+}
+
 // Photo galleries
-$json = loadJson("photo-galleries.json");
+$json = loadJson($galleriesFilePath);
 $galleries = array();
 foreach($json['galleries'] as $key => $value) {
     array_push($galleries, new Gallery($key, $value));
 }
 
 // Strings
-$strings = loadJson("strings.json");
+$strings = loadJson($stringsFilePath);
 
 // Background photos
 $bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
@@ -53,8 +60,6 @@ $context = array(
     "bgImages"  => $bgImages,
     "strings"   => $strings,
 );
-echo("Strings");
-vdump($strings["about-us"]);
 
 //
 // ROUTING
@@ -72,10 +77,11 @@ $app->get('/edit-about-us', function () use ($app, $context) {
     return $app['twig']->render('admin/edit-about-us.twig', $context);
 })->bind("edit-about-us");
 
-$app->post('/edit-about-us', function (Request $request) use ($app, $context) {
-    echo("Params");
-    vdump($request->request->get("about-us"));
-    die;
+$app->post('/edit-about-us', function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
+    $newStrings = $request->request->get("about-us");
+    $strings["about-us"] = $newStrings;
+    writeJson($strings, $stringsFilePath);
+    $context["strings"] = $strings;
     return $app['twig']->render('admin/edit-about-us.twig', $context);
 })->bind("post-edit-about-us");
 

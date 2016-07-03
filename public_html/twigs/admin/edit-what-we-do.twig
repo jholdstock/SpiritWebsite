@@ -1,30 +1,4 @@
-{% extends "admin/admin-base.twig" %}
-{% block head %}
-{% endblock head %}
+{% extends "admin/edit-base.twig" %}
 
 {% block body %}
-		<h2 style="display:inline; margin-right:8em;">What we do</h2>
-		<button type="submit" onclick="return checkIfAnyValueChanged();" form="about-us-form">Save Changes</button>
-		<form id="about-us-form" method="get">
-			<textarea type="text" name="heading" cols="70" rows="1" class="submitOnlyChanged">{{ strings["what-we-do"]["0"]["heading"] }}</textarea>
-			<br /><br />
-		</form>
-	
-		<script>
-			$(function() {
-		    $('#about-us-form').areYouSure();
-				$("#about-us-form").submit(function() {
-				    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
-				});
-		  });
-
-			var anyInputChanged = false;
-			var checkIfAnyValueChanged = function(){ 
-				if (anyInputChanged == false) {
-					alert("No changes to save");
-				}
-				return anyInputChanged; 
-			};
-			$('.submitOnlyChanged').change(function(){ anyInputChanged = true; });
-		</script>
 {% endblock %}
