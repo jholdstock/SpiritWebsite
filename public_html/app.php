@@ -70,33 +70,24 @@ $app->get('/', function () use ($app, $context) {
 })->bind("home");
 
 $app->get('/admin', function () use ($app, $context) {
-    return $app['twig']->render('admin/main-menu.twig', $context);
-})->bind("admin-main-menu");
+    return $app['twig']->render('admin/admin-base.twig', $context);
+})->bind("admin");
 
-$app->get('/edit-about-us', function () use ($app, $context) {
-    return $app['twig']->render('admin/edit-about-us.twig', $context);
-})->bind("edit-about-us");
+$editPages = array("what-we-do", "about-us", "contact");
 
-$app->post('/edit-about-us', function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
-    $newStrings = $request->request->get("about-us");
-    $strings["about-us"] = $newStrings;
-    writeJson($strings, $stringsFilePath);
-    $context["strings"] = $strings;
-    return $app['twig']->render('admin/edit-about-us.twig', $context);
-})->bind("post-edit-about-us");
+foreach ($editPages as $page) {
+    $app->get("/edit-$page", function () use ($app, $context, $page) {
+        return $app["twig"]->render("admin/edit-$page.twig", $context);
+    })->bind("edit-$page");
 
-$app->get('/edit-what-we-do', function () use ($app, $context) {
-    return $app['twig']->render('admin/edit-what-we-do.twig', $context);
-})->bind("edit-what-we-do");
-
-$app->post('/edit-what-we-do', function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
-    $newStrings = $request->request->get("what-we-do");
-    $strings["what-we-do"] = $newStrings;
-    writeJson($strings, $stringsFilePath);
-    $context["strings"] = $strings;
-    return $app['twig']->render('admin/edit-what-we-do.twig', $context);
-})->bind("post-edit-what-we-do");
-
+    $app->post("/edit-$page", function (Request $request) use ($app, $context, $stringsFilePath, $strings, $page) {
+        $newStrings = $request->request->get("$page");
+        $strings["$page"] = $newStrings;
+        writeJson($strings, $stringsFilePath);
+        $context["strings"] = $strings;
+        return $app["twig"]->render("admin/edit-$page.twig", $context);
+    })->bind("post-edit-$page");
+}
 //
 // ERROR HANDLER
 //
@@ -114,6 +105,7 @@ $app->error(function (\Exception $e, $code) use ($app, $context) {
             "httpStatus" => "500 Internal Error",
             "sub" => "Something has gone wrong. Please try again later"
         );
+        //throw $e;
 
         return $app['twig']->render('error.twig', $context);
     }

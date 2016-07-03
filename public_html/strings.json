@@ -27,5 +27,11 @@
     },
     "what-we-do": {
     	"text": "Spirit Design offers a broad spectrum of services from the simplest provision of static lighting to the power distribution, lighting design and rigging installation on events worldwide. We strive to always provide total flexibility, imaginative solutions and real value for money."
+    },
+    "contact": {
+        "email": "spirit@spiritdesignuk.com",
+        "telephone": "+44(0)20 8995 5581",
+        "fax": "+44(0)20 8995 7781",
+        "facebook": "Find us on Facebook"
     }
 }
