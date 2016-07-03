@@ -1,31 +1,15 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block body %}
-		<h2 style="display:inline; margin-right:8em;">About us</h2>
-		<button type="submit" onclick="return checkIfAnyValueChanged();" form="about-us-form">Save Changes</button>
-		<form id="about-us-form" method="post" action="/edit-about-us">
+{% block pageTitle %}
+	About us
+{% endblock %}
+
+{% block editForm %}
+	<form id="edit-strings-form" method="post" action="/edit-about-us">
 		{% for i in 0..5 %}
-			<textarea type="text" name="about-us[{{i}}][heading]" cols="70" rows="1" class="submitOnlyChanged">{{ strings["about-us"][i]["heading"] }}</textarea>
-			<textarea type="text" name="about-us[{{i}}][text]"    cols="80" rows="8" class="submitOnlyChanged">{{ strings["about-us"][i]["text"] }}</textarea>
+			<textarea type="text" name="about-us[{{i}}][heading]" cols="70" rows="1">{{ strings["about-us"][i]["heading"] }}</textarea>
+			<textarea type="text" name="about-us[{{i}}][text]"    cols="80" rows="8">{{ strings["about-us"][i]["text"] }}</textarea>
 			<br /><br />
 		{% endfor %}
-		</form>
-	
-		<script>
-			$(function() {
-		    $('#about-us-form').areYouSure();
-				$("#about-us-form").submit(function() {
-				    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
-				});
-		  });
-
-			var anyInputChanged = false;
-			var checkIfAnyValueChanged = function(){ 
-				if (anyInputChanged == false) {
-					alert("No changes to save");
-				}
-				return anyInputChanged; 
-			};
-			$('.submitOnlyChanged').change(function(){ anyInputChanged = true; });
-		</script>
+	</form>
 {% endblock %}

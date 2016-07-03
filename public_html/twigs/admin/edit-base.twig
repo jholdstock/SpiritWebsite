@@ -13,11 +13,18 @@
     </script>
 {% endblock %}
 
+{% block body %}
+		<h2 style="display:inline; margin-right:8em;">{% block pageTitle %}{% endblock %}</h2>
+		<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
+		{% block editForm %}
+		{% endblock %}
+{% endblock %}
+
 {% block extraJs %}
 		<script>
 			$(function() {
-		    $('#about-us-form').areYouSure();
-				$("#about-us-form").submit(function() {
+		    $('#edit-strings-form').areYouSure();
+				$("#edit-strings-form").submit(function() {
 				    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
 				});
 		  });
@@ -29,6 +36,6 @@
 				}
 				return anyInputChanged; 
 			};
-			$('.submitOnlyChanged').change(function(){ anyInputChanged = true; });
+			$('#edit-strings-form *').change(function(){ anyInputChanged = true; });
 		</script>
 {% endblock %}

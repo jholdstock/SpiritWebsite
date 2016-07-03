@@ -88,6 +88,15 @@ $app->post('/edit-about-us', function (Request $request) use ($app, $context, $s
 $app->get('/edit-what-we-do', function () use ($app, $context) {
     return $app['twig']->render('admin/edit-what-we-do.twig', $context);
 })->bind("edit-what-we-do");
+
+$app->post('/edit-what-we-do', function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
+    $newStrings = $request->request->get("what-we-do");
+    $strings["what-we-do"] = $newStrings;
+    writeJson($strings, $stringsFilePath);
+    $context["strings"] = $strings;
+    return $app['twig']->render('admin/edit-what-we-do.twig', $context);
+})->bind("post-edit-what-we-do");
+
 //
 // ERROR HANDLER
 //
