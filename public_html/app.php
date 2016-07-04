@@ -16,6 +16,7 @@ $app = new Application();
 
 $stringsFilePath = "strings.json";
 $galleriesFilePath = "photo-galleries.json";
+$credentialsFilePath = "credentials.json";
 
 //
 // REGISTER SERVICES
@@ -53,8 +54,9 @@ foreach($json['galleries'] as $key => $value) {
     array_push($galleries, new Gallery($key, $value));
 }
 
-// Strings
 $strings = loadJson($stringsFilePath);
+
+$credentials = loadJson($credentialsFilePath);
 
 // Background photos
 $bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
@@ -77,10 +79,10 @@ $app->get('/admin', function () use ($app, $context) {
     return $app['twig']->render('admin/admin-login.twig', $context);
 })->bind("get-admin");
 
-$app->post('/admin', function (Request $request) use ($app, $context) {
+$app->post('/admin', function (Request $request) use ($app, $context, $credentials) {
     $username = $request->request->get("username");
     $password = $request->request->get("password");
-    if ($username == "spirit" && $password == "password") {
+    if ($username == $credentials["username"] && $password == $credentials["password"]) {
         return $app['twig']->render('admin/edit-base.twig', $context);
     } else {
         $context["authError"] = true;
