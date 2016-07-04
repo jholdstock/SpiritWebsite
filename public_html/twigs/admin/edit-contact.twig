@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block editForm %}
-
-
+	<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
 	<form id="edit-strings-form" method="post" action="/edit-contact">
 			Address: 
 			<textarea type="text" name="contact[address]" cols="60" rows="7">{% for string in strings["contact"]["address"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>

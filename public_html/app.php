@@ -71,11 +71,22 @@ $context = array(
 
 $app->get('/', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
-})->bind("home");
+})->bind("get-home");
 
 $app->get('/admin', function () use ($app, $context) {
-    return $app['twig']->render('admin/admin-base.twig', $context);
-})->bind("admin");
+    return $app['twig']->render('admin/admin-login.twig', $context);
+})->bind("get-admin");
+
+$app->post('/admin', function (Request $request) use ($app, $context) {
+    $username = $request->request->get("username");
+    $password = $request->request->get("password");
+    if ($username == "spirit" && $password == "password") {
+        return $app['twig']->render('admin/edit-base.twig', $context);
+    } else {
+        $context["authError"] = true;
+        return $app['twig']->render('admin/admin-login.twig', $context, 403);
+    }
+})->bind("post-admin");
 
 $app->post("/edit-about-us", function (Request $request) use ($app, $context, $strings) {
     $controller = new AboutUsController($request->request);

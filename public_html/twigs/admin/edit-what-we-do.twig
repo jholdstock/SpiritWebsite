@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block editForm %}
-
+	<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
 	<div class="warning">When updating any list the layout of the page may change. Check the page after updating to ensure it looks correct</div>
 
 	<form id="edit-strings-form" method="post" action="/edit-what-we-do">

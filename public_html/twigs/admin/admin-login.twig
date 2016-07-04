@@ -1,0 +1,30 @@
+{% extends "admin/admin-base.twig" %}
+
+{% block head %}
+  
+  <style>
+	  input[type=text], input[type=password] {
+	  	display: inline;
+	  }
+	</style>
+
+{% endblock %}
+
+{% block body %}
+	<h1>Login</h1>
+	{% if authError %}
+		<div class="error" style="width: 10em;">
+			Incorrect details
+		</div>
+	{% endif %}
+	<form action="admin" method="post">
+		<label>Username:</label><input type="text" name="username"></input>
+		<br />
+		<label>Password:</label><input type="password" name="password"></input>
+		<input type="submit" value="Submit"></input>
+	</form>
+{% endblock %}
+
+{% block extraJs %}
+	
+{% endblock %}
