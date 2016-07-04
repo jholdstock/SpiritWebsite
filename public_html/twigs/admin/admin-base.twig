@@ -25,9 +25,18 @@
 	<body>
 		<div id="top-menu">
 			<a href="/" target="_blank">View Website</a>
-			<a href="/edit-about-us">About Us</a>
-			<a href="/edit-what-we-do">What we do</a>
-			<a href="/edit-contact">Contact</a>
+
+			<form action="edit-about-us" method="post">
+				<input type="submit" value="About Us">
+			</form>
+
+			<form action="edit-what-we-do" method="post">
+				<input type="submit" value="What we do">
+			</form>
+
+			<form action="edit-contact" method="post">
+				<input type="submit" value="Contact">
+			</form>
 		</div>
 		{% block body %}
 		{% endblock %}

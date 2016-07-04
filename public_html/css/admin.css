@@ -12,9 +12,9 @@ html {
   color: #2a2b23;
 }
 
-#top-menu a {
-  margin-bottom: 1em;
-  padding: 1em;
+#top-menu input, #top-menu form {
+  margin: 0.5em;
+  display: inline;
 }
 
 textarea, input, button, select { font-family: inherit; font-size: inherit; }

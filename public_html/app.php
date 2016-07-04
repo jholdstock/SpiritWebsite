@@ -76,65 +76,61 @@ $app->get('/admin', function () use ($app, $context) {
 $editPages = array("about-us");
 
 foreach ($editPages as $page) {
-    $app->get("/edit-$page", function () use ($app, $context, $page) {
-        return $app["twig"]->render("admin/edit-$page.twig", $context);
-    })->bind("edit-$page");
 
     $app->post("/edit-$page", function (Request $request) use ($app, $context, $stringsFilePath, $strings, $page) {
         $newStrings = $request->request->get("$page");
-        $strings["$page"] = $newStrings;
-        writeJson($strings, $stringsFilePath);
-        $context["strings"] = $strings;
+        if ($newStrings) {
+            $strings["$page"] = $newStrings;
+            writeJson($strings, $stringsFilePath);
+            $context["strings"] = $strings;
+        }
+
         return $app["twig"]->render("admin/edit-$page.twig", $context);
     })->bind("post-edit-$page");
 }
 
-$app->get("/edit-contact", function () use ($app, $context) {
-    return $app["twig"]->render("admin/edit-contact.twig", $context);
-})->bind("edit-contact");
-
 $app->post("/edit-contact", function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
     $newStrings = $request->request->get("contact");
-    
-    $rawAddress = $newStrings["address"];
-    $parsedAddress = explode(PHP_EOL, $rawAddress);
-    $parsedAddress = array_map('trim', $parsedAddress);
-    $parsedAddress = array_filter($parsedAddress);
-    $newStrings["address"] = $parsedAddress;
+    if ($newStrings) {
+        $rawAddress = $newStrings["address"];
+        $parsedAddress = explode(PHP_EOL, $rawAddress);
+        $parsedAddress = array_map('trim', $parsedAddress);
+        $parsedAddress = array_filter($parsedAddress);
+        $newStrings["address"] = $parsedAddress;
 
-    $strings["contact"] = $newStrings;
-    writeJson($strings, $stringsFilePath);
-    $context["strings"] = $strings;
+        $strings["contact"] = $newStrings;
+        writeJson($strings, $stringsFilePath);
+        $context["strings"] = $strings;
+    }
     return $app["twig"]->render("admin/edit-contact.twig", $context);
 })->bind("post-edit-contact");
 
-$app->get("/edit-what-we-do", function () use ($app, $context) {
-    return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
-})->bind("edit-what-we-do");
-
 $app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
     $newStrings = $request->request->get("what-we-do");
-    $rawRecentClients = $newStrings["recent-clients"];
-    $parsedRecentClients = explode(PHP_EOL, $rawRecentClients);
-    $parsedRecentClients = array_map('trim', $parsedRecentClients);
-    $parsedRecentClients = array_filter($parsedRecentClients);
-    $newStrings["recent-clients"] = $parsedRecentClients;
+    if ($newStrings) {
+        $rawRecentClients = $newStrings["recent-clients"];
+        $parsedRecentClients = explode(PHP_EOL, $rawRecentClients);
+        $parsedRecentClients = array_map('trim', $parsedRecentClients);
+        $parsedRecentClients = array_filter($parsedRecentClients);
+        $newStrings["recent-clients"] = $parsedRecentClients;
 
-    $rawList1 = $newStrings["list1"];
-    $parsedList1 = explode(PHP_EOL, $rawList1);
-    $parsedList1 = array_map('trim', $parsedList1);
-    $parsedList1 = array_filter($parsedList1);
-    $newStrings["list1"] = $parsedList1;
+        $rawList1 = $newStrings["list1"];
+        $parsedList1 = explode(PHP_EOL, $rawList1);
+        $parsedList1 = array_map('trim', $parsedList1);
+        $parsedList1 = array_filter($parsedList1);
+        $newStrings["list1"] = $parsedList1;
 
-    $rawList2 = $newStrings["list2"];
-    $parsedList2 = explode(PHP_EOL, $rawList2);
-    $parsedList2 = array_map('trim', $parsedList2);
-    $parsedList2 = array_filter($parsedList2);
-    $newStrings["list2"] = $parsedList2;
+        $rawList2 = $newStrings["list2"];
+        $parsedList2 = explode(PHP_EOL, $rawList2);
+        $parsedList2 = array_map('trim', $parsedList2);
+        $parsedList2 = array_filter($parsedList2);
+        $newStrings["list2"] = $parsedList2;
 
-    $strings["what-we-do"] = $newStrings;
-    writeJson($strings, $stringsFilePath);
-    $context["strings"] = $strings;
+        $strings["what-we-do"] = $newStrings;
+        writeJson($strings, $stringsFilePath);
+        $context["strings"] = $strings;
+    }
+
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");
 //
@@ -142,22 +138,20 @@ $app->post("/edit-what-we-do", function (Request $request) use ($app, $context, 
 //
 
 $app->error(function (\Exception $e, $code) use ($app, $context) {
-    if ($code == 404) {
+    if ($code == 404 || $code == 405) {
         $context = array(
             "httpStatus" => "404 Not Found",
             "sub" => "The requested page could not be found. Please try the <a href='/'>home page</a> instead."
         );
-
-        return $app['twig']->render('error.twig', $context);
     } else {
         $context = array(
-            "httpStatus" => "500 Internal Error",
-            "sub" => "Something has gone wrong. Please try again later"
+            "httpStatus" => "$code",
+            "sub" => "Something has gone horribly wrong. Please try again later or try the <a href='/'>home page</a> instead."
         );
-        //throw $e;
-
-        return $app['twig']->render('error.twig', $context);
     }
+    
+    //throw $e;
+    return $app['twig']->render('error.twig', $context);
 });
 
 $app->run();
