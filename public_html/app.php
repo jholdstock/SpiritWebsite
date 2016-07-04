@@ -2,6 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once 'Gallery.php';
+require_once 'Controller.php';
+require_once 'AboutUsController.php';
+require_once 'WhatWeDoController.php';
+require_once 'ContactController.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
@@ -73,63 +77,26 @@ $app->get('/admin', function () use ($app, $context) {
     return $app['twig']->render('admin/admin-base.twig', $context);
 })->bind("admin");
 
-$editPages = array("about-us");
+$app->post("/edit-about-us", function (Request $request) use ($app, $context, $strings) {
+    $controller = new AboutUsController($request->request);
+    $strings = $controller->handle($strings);
+    $context["strings"] = $strings;
 
-foreach ($editPages as $page) {
+    return $app["twig"]->render("admin/edit-about-us.twig", $context);
+})->bind("post-edit-about-us");
 
-    $app->post("/edit-$page", function (Request $request) use ($app, $context, $stringsFilePath, $strings, $page) {
-        $newStrings = $request->request->get("$page");
-        if ($newStrings) {
-            $strings["$page"] = $newStrings;
-            writeJson($strings, $stringsFilePath);
-            $context["strings"] = $strings;
-        }
+$app->post("/edit-contact", function (Request $request) use ($app, $context, $strings) {
+    $controller = new ContactController($request->request);
+    $strings = $controller->handle($strings);
+    $context["strings"] = $strings;
 
-        return $app["twig"]->render("admin/edit-$page.twig", $context);
-    })->bind("post-edit-$page");
-}
-
-$app->post("/edit-contact", function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
-    $newStrings = $request->request->get("contact");
-    if ($newStrings) {
-        $rawAddress = $newStrings["address"];
-        $parsedAddress = explode(PHP_EOL, $rawAddress);
-        $parsedAddress = array_map('trim', $parsedAddress);
-        $parsedAddress = array_filter($parsedAddress);
-        $newStrings["address"] = $parsedAddress;
-
-        $strings["contact"] = $newStrings;
-        writeJson($strings, $stringsFilePath);
-        $context["strings"] = $strings;
-    }
     return $app["twig"]->render("admin/edit-contact.twig", $context);
 })->bind("post-edit-contact");
 
-$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $stringsFilePath, $strings) {
-    $newStrings = $request->request->get("what-we-do");
-    if ($newStrings) {
-        $rawRecentClients = $newStrings["recent-clients"];
-        $parsedRecentClients = explode(PHP_EOL, $rawRecentClients);
-        $parsedRecentClients = array_map('trim', $parsedRecentClients);
-        $parsedRecentClients = array_filter($parsedRecentClients);
-        $newStrings["recent-clients"] = $parsedRecentClients;
-
-        $rawList1 = $newStrings["list1"];
-        $parsedList1 = explode(PHP_EOL, $rawList1);
-        $parsedList1 = array_map('trim', $parsedList1);
-        $parsedList1 = array_filter($parsedList1);
-        $newStrings["list1"] = $parsedList1;
-
-        $rawList2 = $newStrings["list2"];
-        $parsedList2 = explode(PHP_EOL, $rawList2);
-        $parsedList2 = array_map('trim', $parsedList2);
-        $parsedList2 = array_filter($parsedList2);
-        $newStrings["list2"] = $parsedList2;
-
-        $strings["what-we-do"] = $newStrings;
-        writeJson($strings, $stringsFilePath);
-        $context["strings"] = $strings;
-    }
+$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $strings) {
+    $controller = new WhatWeDoController($request->request);
+    $strings = $controller->handle($strings);
+    $context["strings"] = $strings;
 
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");
@@ -149,7 +116,7 @@ $app->error(function (\Exception $e, $code) use ($app, $context) {
             "sub" => "Something has gone horribly wrong. Please try again later or try the <a href='/'>home page</a> instead."
         );
     }
-    
+
     //throw $e;
     return $app['twig']->render('error.twig', $context);
 });
