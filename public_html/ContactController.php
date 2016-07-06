@@ -8,6 +8,7 @@ class ContactController extends Controller {
 
   protected function parseNewStrings() {
     $address = $this->newStrings["address"];
+    $this->newStrings["address"] = $this->explodeAndCleanup($address);
   }
 
 }

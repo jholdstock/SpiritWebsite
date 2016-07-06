@@ -5,6 +5,7 @@ require_once 'Gallery.php';
 require_once 'Controller.php';
 require_once 'AboutUsController.php';
 require_once 'WhatWeDoController.php';
+require_once 'GalleriesController.php';
 require_once 'ContactController.php';
 
 use Symfony\Component\HttpFoundation\Request;
@@ -47,14 +48,15 @@ function writeJson($obj, $filePath) {
     file_put_contents($filePath, json_encode($obj));
 }
 
+$strings = loadJson($stringsFilePath);
+
 // Photo galleries
 $json = loadJson($galleriesFilePath);
 $galleries = array();
 foreach($json['galleries'] as $key => $value) {
-    array_push($galleries, new Gallery($key, $value));
+    array_push($galleries, new Gallery($value, $strings["galleries"][$key]));
 }
 
-$strings = loadJson($stringsFilePath);
 
 $credentials = loadJson($credentialsFilePath);
 
@@ -110,6 +112,13 @@ $app->post("/edit-what-we-do", function (Request $request) use ($app, $context, 
 
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");
+
+$app->post("/edit-portfolio", function (Request $request) use ($app, $context, $strings) {
+    $controller = new GalleriesController($request->request, $strings, $context);
+    $context = $controller->handle();
+
+    return $app["twig"]->render("admin/edit-portfolio.twig", $context);
+})->bind("post-edit-portfolio");
 //
 // ERROR HANDLER
 //

@@ -89,5 +89,28 @@
             "6": "W4 3HR"
         },
         "map-url": "https://www.google.com/maps/embed/v1/place?q=Spirit%20Design%20Ltd%2C%20Sutton%20Court%20Road%2C%20London%2C%20United%20Kingdom&key=AIzaSyDTVburpPYIFbIwnn-PHm9MBWWXpTu4oUk"
+    },
+    "galleries": {
+        "1": {
+            "displayName": "Automotive"
+        },
+        "2": {
+            "displayName": "Concert/Touring"
+        },
+        "3": {
+            "displayName": "Corporate"
+        },
+        "4": {
+            "displayName": "Exhibitions"
+        },
+        "5": {
+            "displayName": "Fashion"
+        },
+        "6": {
+            "displayName": "Live Events"
+        },
+        "7": {
+            "displayName": "Theatre/Television"
+        }
     }
 }

@@ -1,7 +1,7 @@
 {
     "galleries": {
-        "automotive": {
-            "displayName": "Automotive",
+        "1": {
+            "directoryName": "automotive",
             "images": {
                 "1": {
                     "caption": "Hyundai i20 Launch",
@@ -25,8 +25,8 @@
                 }
             }
         },
-        "concert": {
-            "displayName": "Concert/Touring",
+        "2": {
+            "directoryName": "concert",
             "images": {
                 "1": {
                     "caption": "Sam Smith",
@@ -58,8 +58,8 @@
                 }
             }
         },
-        "corporate": {
-            "displayName": "Corporate",
+        "3": {
+            "directoryName": "corporate",
             "images": {
                 "1": {
                     "caption": "Sanofi AGM",
@@ -71,8 +71,8 @@
                 }
             }
         },
-        "exhibition": {
-            "displayName": "Exhibitions",
+        "4": {
+            "directoryName": "exhibition",
             "images": {
                 "1": {
                     "caption": "VISA",
@@ -96,8 +96,8 @@
                 }
             }
         },
-        "fashion": {
-            "displayName": "Fashion",
+        "5": {
+            "directoryName": "fashion",
             "images": {
                 "1": {
                     "caption": "WELLA",
@@ -105,8 +105,8 @@
                 }
             }
         },
-        "live": {
-            "displayName": "Live Events",
+        "6": {
+            "directoryName": "live",
             "images": {
                 "1": {
                     "caption": "",
@@ -126,8 +126,8 @@
                 }
             }
         },
-        "theatre": {
-            "displayName": "Theatre/Television",
+        "7": {
+            "directoryName": "theatre",
             "images": {
                 "1": {
                     "caption": "Stasis",

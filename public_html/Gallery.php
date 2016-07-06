@@ -2,9 +2,9 @@
 require_once 'Photo.php';
 
 class Gallery {
-    public function __construct($dir, $gallery_json) {
-
-    	$this->displayName = $gallery_json["displayName"];
+    public function __construct($gallery_json, $galleryStrings) {
+        $dir = $gallery_json["directoryName"];
+    	$this->displayName = $galleryStrings["displayName"];
     	$this->cssName = "gallery-$dir";
      	$imgDir = "img/galleries/$dir/";
         $thumbDir = "img/thumbnails/$dir/";
