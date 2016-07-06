@@ -42,9 +42,7 @@
 			</form>
 		</div>
 
-		<h2 style="display:inline; margin-right:8em;">{% block pageTitle %}{% endblock %}</h2>
-		
-			<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form" style="visibility:{% block saveButtonState %}visible{% endblock %};">Save Changes</button>
+		<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
 		
 		{% if saveSuccess %}
 			<div class="success">

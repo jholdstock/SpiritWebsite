@@ -1,15 +1,15 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block pageTitle %}
-	About us
-{% endblock %}
-
 {% block editForm %}
 	<form id="edit-strings-form" method="post" action="/edit-about-us">
-		{% for i in 0..5 %}
-			<input type="text" size="50" maxlength="50" name="about-us[{{i}}][heading]" value='{{ strings["about-us"][i]["heading"] }}'></input>
-			<textarea type="text" name="about-us[{{i}}][text]" cols="80" rows="8">{{ strings["about-us"][i]["text"] }}</textarea>
-			<br /><br />
-		{% endfor %}
+		<fieldset>
+			    <legend>About Us</legend>
+					
+			{% for i in 0..5 %}
+				<input type="text" size="50" maxlength="50" name="about-us[{{i}}][heading]" value='{{ strings["about-us"][i]["heading"] }}'></input>
+				<textarea type="text" name="about-us[{{i}}][text]" cols="80" rows="8">{{ strings["about-us"][i]["text"] }}</textarea>
+				<br /><br />
+			{% endfor %}
+		</fieldset>
 	</form>
 {% endblock %}

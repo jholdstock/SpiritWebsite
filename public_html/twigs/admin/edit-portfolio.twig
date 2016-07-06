@@ -1,14 +1,14 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block pageTitle %}
-	Portfolio
-{% endblock %}
-
 {% block editForm %}
 	<form id="edit-strings-form" method="post" action="/edit-portfolio">
-		{% for i in 1..7 %}
-			<input type="text" size="50" maxlength="50" name="galleries[{{i}}][displayName]" value='{{ strings["galleries"][i]["displayName"] }}'></input>
-			<br /><br />
-		{% endfor %}
+		<fieldset>
+	      <legend>Portfolio</legend>
+				
+			{% for i in 1..7 %}
+				<input type="text" size="50" maxlength="50" name="galleries[{{i}}][displayName]" value='{{ strings["galleries"][i]["displayName"] }}'></input>
+				<br /><br />
+			{% endfor %}
+		</fieldset>
 	</form>
 {% endblock %}
