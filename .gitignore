@@ -1,2 +1,3 @@
 /vendor/
 *.db
+public_html/strings-2.json

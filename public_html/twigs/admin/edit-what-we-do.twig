@@ -5,9 +5,6 @@
 {% endblock %}
 
 {% block editForm %}
-	<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
-	<div class="warning">When updating any list the layout of the page may change. Check the page after updating to ensure it looks correct</div>
-
 	<form id="edit-strings-form" method="post" action="/edit-what-we-do">
 			<input type="text" size="50" maxlength="50" name="what-we-do[heading1]" value="{{ strings["what-we-do"]["heading1"] }}"></input>
 			<textarea type="text" name="what-we-do[list1]" cols="60" rows="8">{% for string in strings["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>

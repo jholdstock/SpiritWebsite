@@ -83,7 +83,7 @@ $app->post('/admin', function (Request $request) use ($app, $context, $credentia
     $username = $request->request->get("username");
     $password = $request->request->get("password");
     if ($username == $credentials["username"] && $password == $credentials["password"]) {
-        return $app['twig']->render('admin/edit-base.twig', $context);
+        return $app['twig']->render('admin/edit-landing.twig', $context);
     } else {
         $context["authError"] = true;
         return $app['twig']->render('admin/admin-login.twig', $context, 403);
@@ -91,25 +91,22 @@ $app->post('/admin', function (Request $request) use ($app, $context, $credentia
 })->bind("post-admin");
 
 $app->post("/edit-about-us", function (Request $request) use ($app, $context, $strings) {
-    $controller = new AboutUsController($request->request);
-    $strings = $controller->handle($strings);
-    $context["strings"] = $strings;
+    $controller = new AboutUsController($request->request, $strings, $context);
+    $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-about-us.twig", $context);
 })->bind("post-edit-about-us");
 
 $app->post("/edit-contact", function (Request $request) use ($app, $context, $strings) {
-    $controller = new ContactController($request->request);
-    $strings = $controller->handle($strings);
-    $context["strings"] = $strings;
-
+    $controller = new ContactController($request->request, $strings, $context);
+    $context = $controller->handle();
+    
     return $app["twig"]->render("admin/edit-contact.twig", $context);
 })->bind("post-edit-contact");
 
 $app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $strings) {
-    $controller = new WhatWeDoController($request->request);
-    $strings = $controller->handle($strings);
-    $context["strings"] = $strings;
+    $controller = new WhatWeDoController($request->request, $strings, $context);
+    $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");

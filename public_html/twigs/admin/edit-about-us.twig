@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block editForm %}
-	<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
 	<form id="edit-strings-form" method="post" action="/edit-about-us">
 		{% for i in 0..5 %}
 			<input type="text" size="50" maxlength="50" name="about-us[{{i}}][heading]" value='{{ strings["about-us"][i]["heading"] }}'></input>

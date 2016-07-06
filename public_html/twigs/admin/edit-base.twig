@@ -21,7 +21,7 @@
 {% block body %}
 		<div id="top-menu">
 			<a href="/" target="_blank">View Website</a>
-
+			
 			<form action="edit-about-us" method="post">
 				<input type="submit" value="About Us">
 			</form>
@@ -34,8 +34,19 @@
 				<input type="submit" value="Contact">
 			</form>
 		</div>
+
+		<h2 style="display:inline; margin-right:8em;">{% block pageTitle %}{% endblock %}</h2>
 		
-		<h2 style="display:inline; margin-right:8em;">{% block pageTitle %}Website Admin{% endblock %}</h2>
+		{% block saveButton %}
+			<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
+		{% endblock %}
+		
+		{% if updated %}
+			<div class="success">
+				Changes saved
+			</div>
+		{% endif %}
+
 		{% block editForm %}
 		{% endblock %}
 {% endblock %}

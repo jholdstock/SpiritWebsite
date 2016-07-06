@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block editForm %}
-	<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
 	<form id="edit-strings-form" method="post" action="/edit-contact">
 			Address: 
 			<textarea type="text" name="contact[address]" cols="60" rows="7">{% for string in strings["contact"]["address"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
-			Telephone:
 
 			<div class="info">Changing these values will update both the contact page and the footer at the bottom of every page</div>
+			
+			Telephone:
 			<input type="text" size="30" name="contact[telephone]" value="{{ strings["contact"]["telephone"] }}"></input>
 			Fax:
 			<input type="text" size="30" name="contact[fax]" value="{{ strings["contact"]["fax"] }}"></input>
