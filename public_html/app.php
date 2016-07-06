@@ -57,7 +57,6 @@ foreach($json['galleries'] as $key => $value) {
     array_push($galleries, new Gallery($value, $strings["galleries"][$key]));
 }
 
-
 $credentials = loadJson($credentialsFilePath);
 
 // Background photos
@@ -80,6 +79,23 @@ $app->get('/', function () use ($app, $context) {
 $app->get('/admin', function () use ($app, $context) {
     return $app['twig']->render('admin/admin-login.twig', $context);
 })->bind("get-admin");
+
+$app->post('/password', function (Request $request) use ($app, $context, $credentials) {
+    $password = $request->request->get("oldPassword");
+    if ($password) {
+            if ($password == $credentials["password"]) {
+                // update creds
+                $context["changePasswordSuccess"] = true;
+                return $app['twig']->render('admin/admin-password.twig', $context);
+            } else {
+                $context["changePasswordError"] = true;
+                return $app['twig']->render('admin/admin-password.twig', $context);
+            }
+    }
+    else {
+        return $app['twig']->render('admin/admin-password.twig', $context);
+    }
+})->bind("post-password");
 
 $app->post('/admin', function (Request $request) use ($app, $context, $credentials) {
     $username = $request->request->get("username");
@@ -135,7 +151,6 @@ $app->error(function (\Exception $e, $code) use ($app, $context) {
             "sub" => "Something has gone horribly wrong. Please try again later or try the <a href='/'>home page</a> instead."
         );
     }
-
     //throw $e;
     return $app['twig']->render('error.twig', $context);
 });

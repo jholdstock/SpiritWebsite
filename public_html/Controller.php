@@ -22,8 +22,8 @@ abstract class Controller {
         
         writeJson($this->strings, $GLOBALS["stringsFilePath"]);
 
-        $this->context["updated"] = true;
         $this->context["strings"] = $this->strings;
+        $this->context["saveSuccess"] = true;
     }
     return $this->context;
   }

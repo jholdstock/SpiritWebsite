@@ -4,14 +4,14 @@
 		<!-- Script -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		
+    <script>
+    	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>');
+    </script>
+
 		<!-- AreYouSure? -->
 		<script src="/js/vendor/areyousure/jquery.are-you-sure.js"></script>
 		<script src="/js/vendor/areyousure/ays-beforeunload-shim.js"></script>
 
-    <script>
-    	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>');
-    </script>
-    
     <style>
     
 		</style>
@@ -37,17 +37,18 @@
 			<form action="edit-portfolio" method="post">
 				<input type="submit" value="Portfolio">
 			</form>
+			<form action="password" method="post">
+				<input type="submit" value="Password">
+			</form>
 		</div>
 
 		<h2 style="display:inline; margin-right:8em;">{% block pageTitle %}{% endblock %}</h2>
 		
-		{% block saveButton %}
-			<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form">Save Changes</button>
-		{% endblock %}
+			<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form" style="visibility:{% block saveButtonState %}visible{% endblock %};">Save Changes</button>
 		
-		{% if updated %}
+		{% if saveSuccess %}
 			<div class="success">
-				Changes saved
+				Changes saved. <a href="/" target="_blank">Want to check them now?</a>
 			</div>
 		{% endif %}
 
