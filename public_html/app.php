@@ -86,14 +86,14 @@ $app->post('/password', function (Request $request) use ($app, $context, $creden
             if ($password == $credentials["password"]) {
                 // update creds
                 $context["changePasswordSuccess"] = true;
-                return $app['twig']->render('admin/admin-password.twig', $context);
+                return $app['twig']->render('admin/edit-password.twig', $context);
             } else {
                 $context["changePasswordError"] = true;
-                return $app['twig']->render('admin/admin-password.twig', $context);
+                return $app['twig']->render('admin/edit-password.twig', $context);
             }
     }
     else {
-        return $app['twig']->render('admin/admin-password.twig', $context);
+        return $app['twig']->render('admin/edit-password.twig', $context);
     }
 })->bind("post-password");
 

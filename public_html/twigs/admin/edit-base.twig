@@ -42,34 +42,43 @@
 			</form>
 		</div>
 
-		<button type="submit" onclick="return checkIfAnyValueChanged();" form="edit-strings-form" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
 		
-		{% if saveSuccess %}
-			<div class="success">
-				Changes saved. <a href="/" target="_blank">Want to check them now?</a>
-			</div>
-		{% endif %}
+		
+		<form method="post" id="edit-strings-form" action="{% block formAction %}{% endblock %}">
+			<fieldset>
+		    <legend>{% block pageTitle %}{% endblock %}</legend>
 
-		{% block editForm %}
-		{% endblock %}
+				<button type="submit" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
+
+				{% if saveSuccess %}
+					<div class="success" style="display:inline;">
+						Changes saved. <a href="/" target="_blank">Want to check them now?</a>
+					</div>
+				{% endif %}
+				<br />
+				{% block editForm %}
+				{% endblock %}
+			</fieldset>
+		</form>
+
 {% endblock %}
 
 {% block extraJs %}
-		<script>
-			$(function() {
-		    $('#edit-strings-form').areYouSure();
-				$("#edit-strings-form").submit(function() {
-				    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
-				});
-		  });
+	<script>
+		$(function() {
+	    $('#edit-strings-form').areYouSure();
+			$("#edit-strings-form").submit(function() {
+			    return confirm("!!! WARNING !!!\n\nChanges will become visible on the website immediately.\n\nAre you sure you wish to save?")
+			});
+	  });
 
-			var anyInputChanged = false;
-			var checkIfAnyValueChanged = function(){ 
-				if (anyInputChanged == false) {
-					alert("No changes to save");
-				}
-				return anyInputChanged; 
-			};
-			$('#edit-strings-form *').change(function(){ anyInputChanged = true; });
-		</script>
+		var anyInputChanged = false;
+		var checkIfAnyValueChanged = function(){ 
+			if (anyInputChanged == false) {
+				alert("No changes to save");
+			}
+			return anyInputChanged; 
+		};
+		$('#edit-strings-form *').change(function(){ anyInputChanged = true; });
+	</script>
 {% endblock %}

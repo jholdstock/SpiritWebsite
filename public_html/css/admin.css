@@ -12,6 +12,27 @@ html {
   color: #2a2b23;
 }
 
+.label {
+  font-size: 1.2em;
+  padding: 0.2em;
+  display: inline;
+  width: 140px;
+  text-align: right;
+  float: left;
+}
+
+input[type=text], textarea[type=text] {
+  display: inline;
+}
+
+fieldset {
+  max-width: 800px;
+}
+
+legend {
+  font-size: 2em;
+}
+
 #top-menu input, #top-menu form {
   margin: 0.5em;
   display: inline;

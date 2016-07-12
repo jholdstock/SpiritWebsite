@@ -1,17 +1,34 @@
 {% extends "admin/edit-base.twig" %}
 
+{% block formAction %}/edit-what-we-do{% endblock %}
+{% block pageTitle %}What we do{% endblock %}
+
 {% block editForm %}
-	<form id="edit-strings-form" method="post" action="/edit-what-we-do">
-		<fieldset>
-		    <legend>What we do</legend>
-				
-				<input type="text" size="50" maxlength="50" name="what-we-do[heading1]" value="{{ strings["what-we-do"]["heading1"] }}"></input>
-				<textarea type="text" name="what-we-do[list1]" cols="60" rows="8">{% for string in strings["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
-				<input type="text" size="50" maxlength="50" name="what-we-do[heading2]" value="{{ strings["what-we-do"]["heading2"] }}"></input>
-				<textarea type="text" name="what-we-do[list2]" cols="60" rows="8">{% for string in strings["what-we-do"]["list2"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
-				<textarea type="text" name="what-we-do[text]" cols="80" rows="8">{{ strings["what-we-do"]["text"] }}</textarea>
-				<input type="text" size="50" maxlength="50" name="what-we-do[recent-clients-heading]" value="{{ strings["what-we-do"]["recent-clients-heading"] }}"></input>
-				<textarea type="text" name="what-we-do[recent-clients]" cols="60" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
-		</fieldset>
-	</form>
+	<div class="label">Left heading:</div>
+	<input type="text" size="50" maxlength="50" name="what-we-do[heading1]" value="{{ strings["what-we-do"]["heading1"] }}"></input>
+	<div class="clearfix"></div>
+
+	<div class="label">Left list:</div>
+	<textarea type="text" name="what-we-do[list1]" cols="60" rows="8">{% for string in strings["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<div class="clearfix"></div>
+
+	<div class="label">Right heading:</div>
+	<input type="text" size="50" maxlength="50" name="what-we-do[heading2]" value="{{ strings["what-we-do"]["heading2"] }}"></input>
+	<div class="clearfix"></div>
+
+	<div class="label">Right list:</div>
+	<textarea type="text" name="what-we-do[list2]" cols="60" rows="8">{% for string in strings["what-we-do"]["list2"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<div class="clearfix"></div>
+
+	<div class="label">Centre text:</div>
+	<textarea type="text" name="what-we-do[text]" cols="60" rows="8">{{ strings["what-we-do"]["text"] }}</textarea>
+	<div class="clearfix"></div>
+
+	<div class="label">Clients heading:</div>
+	<input type="text" size="50" maxlength="50" name="what-we-do[recent-clients-heading]" value="{{ strings["what-we-do"]["recent-clients-heading"] }}"></input>
+	<div class="clearfix"></div>
+
+	<div class="label">Client list:</div>
+	<textarea type="text" name="what-we-do[recent-clients]" cols="60" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<div class="clearfix"></div>
 {% endblock %}

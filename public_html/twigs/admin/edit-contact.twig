@@ -1,29 +1,38 @@
 {% extends "admin/edit-base.twig" %}
 
+{% block formAction %}/edit-contact{% endblock %}
+{% block pageTitle %}Contact{% endblock %}
 {% block editForm %}
-	<form id="edit-strings-form" method="post" action="/edit-contact">
-		<fieldset>
-	      <legend>Contact</legend>
-				Address: 
-				<textarea type="text" name="contact[address]" cols="60" rows="7">{% for string in strings["contact"]["address"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<div class="label">Address: </div>
+	<textarea type="text" name="contact[address]" cols="60" rows="7">{% for string in strings["contact"]["address"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 
-				<div class="info">Changing these values will update both the contact page and the footer at the bottom of every page</div>
-				
-				Telephone:
-				<input type="text" size="30" name="contact[telephone]" value="{{ strings["contact"]["telephone"] }}"></input>
-				Fax:
-				<input type="text" size="30" name="contact[fax]" value="{{ strings["contact"]["fax"] }}"></input>
-				Email:
-				<input type="text" size="30" name="contact[email]" value="{{ strings["contact"]["email"] }}"></input>
-				Facebook:
-				<input type="text" size="30" name="contact[facebook]" value="{{ strings["contact"]["facebook"] }}"></input>
+	<div class="info">Changing the values below will update both the contact page and the footer at the bottom of every page</div>
+	
+	<div class="label">Telephone:</div>
+	<input type="text" size="30" name="contact[telephone]" value="{{ strings["contact"]["telephone"] }}"></input>
+	<div class="clearfix"></div>
 
-				<div class="info"><p>To update the map URL, find the location you want in Google Maps and click on share. Click on "Embed map" and take only the url contained inside src="". This URL can be very long.</p>
-				<p>EG.</p>
-					<tt>&lt;iframe src="<span style="font-weight:bolder; color: #00243B">https://www.google.com/maps/embed?pb=!2sEmpire+State+Building!5e0!3m2!1sen!2sus!4v1467569804430</span>" width="600" height="450" frameborder="0" style="border:0" allowfullscreen&gt;&lt;/iframe&gt;</tt>
-				</p> </div>
-				Map URL:
-				<input type="text" size="130" name="contact[map-url]" value="{{ strings["contact"]["map-url"] }}"></input>
-			</fieldset>
-	</form>
+	<div class="label">Fax:</div>
+	<input type="text" size="30" name="contact[fax]" value="{{ strings["contact"]["fax"] }}"></input>
+	<div class="clearfix"></div>
+
+	<div class="label">Email:</div>
+	<input type="text" size="30" name="contact[email]" value="{{ strings["contact"]["email"] }}"></input>
+	<div class="clearfix"></div>
+
+	<div class="label">Facebook:</div>
+	<input type="text" size="30" name="contact[facebook]" value="{{ strings["contact"]["facebook"] }}"></input>
+	<div class="clearfix"></div>
+
+
+	<div class="info">
+		<p>To update the map URL, find the location you want in Google Maps and click on share. Click on "Embed map" and take only the url contained inside src="". This URL can be very long.</p>
+		<p>EG.</p>
+		<tt>&lt;iframe src="<span style="font-weight:bolder; color: #00243B">https://www.google.com/maps/embed?pb=!2sEmpire+State+Building!5e0!3m2!1sen!2sus!4v1467569804430</span>" width="600" height="450" frameborder="0" style="border:0" allowfullscreen&gt;&lt;/iframe&gt;</tt>
+	</div>
+
+	<div class="label">Map URL:</div>
+	<input type="text" size="65" name="contact[map-url]" value="{{ strings["contact"]["map-url"] }}"></input>
+	<div class="clearfix"></div>
+
 {% endblock %}
