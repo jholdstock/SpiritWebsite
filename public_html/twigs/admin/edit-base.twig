@@ -48,7 +48,7 @@
 			<fieldset>
 		    <legend>{% block pageTitle %}{% endblock %}</legend>
 
-				<button type="submit" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
+				<button type="submit" form="edit-strings-form" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
 
 				{% if saveSuccess %}
 					<div class="success" style="display:inline;">

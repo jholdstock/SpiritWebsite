@@ -21,12 +21,18 @@ html {
   float: left;
 }
 
-input[type=text], textarea[type=text] {
+input[type=text] {
   display: inline;
+  width: 300px;
+}
+
+textarea[type=text] {
+  display: inline;
+  width: 450px;
 }
 
 fieldset {
-  max-width: 800px;
+  max-width: 700px;
 }
 
 legend {
@@ -113,7 +119,7 @@ button:active {
   padding:15px 10px 15px 50px;
   background-repeat: no-repeat;
   background-position: 10px center;
-  width: 650px;
+  width: 600px;
 }
 .info {
   color: #00529B;

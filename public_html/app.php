@@ -54,7 +54,8 @@ $strings = loadJson($stringsFilePath);
 $json = loadJson($galleriesFilePath);
 $galleries = array();
 foreach($json['galleries'] as $key => $value) {
-    array_push($galleries, new Gallery($value, $strings["galleries"][$key]));
+    $gal = new Gallery($value, $strings["galleries"][$key]);
+    $galleries[$key] = $gal;
 }
 
 $credentials = loadJson($credentialsFilePath);
@@ -135,10 +136,20 @@ $app->post("/edit-portfolio", function (Request $request) use ($app, $context, $
 
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
+
+
+$app->post("/edit-gallery", function (Request $request) use ($app, $context) {
+    $gallery_id = $request->request->get("gallery_id");
+    $context["chosenGallery"] = $context["galleries"][$gallery_id];
+
+    vdump($context["chosenGallery"]);
+
+    return $app["twig"]->render("admin/edit-gallery.twig", $context);
+})->bind("post-edit-gallery");
+
 //
 // ERROR HANDLER
 //
-
 $app->error(function (\Exception $e, $code) use ($app, $context) {
     if ($code == 404 || $code == 405) {
         $context = array(
