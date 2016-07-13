@@ -4,6 +4,8 @@
 {% block pageTitle %}{{ chosenGallery.displayName }}{% endblock %}
 
 {% block editForm %}
+	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
+
   {% for i in 0..(chosenGallery.photos|length)-1 %}
     <img src="{{chosenGallery.photos[i].thumbnailUrl}}" style="display:block;"/>
     

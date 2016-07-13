@@ -92,25 +92,145 @@
     },
     "galleries": {
         "1": {
-            "displayName": "Automotive"
+            "directoryName": "automotive",
+            "displayName": "Automotive",
+            "images": {
+                "1": {
+                    "caption": "Hyundai i20 Launch",
+                    "sub": "MK Dons Arena"
+                },
+                "2": {
+                    "caption": "Hyundai i20 Launch",
+                    "sub": "MK Dons Arena"
+                },
+                "3": {
+                    "caption": "SWIFT Launch",
+                    "sub": ""
+                },
+                "4": {
+                    "caption": "General Motors",
+                    "sub": "Cologne"
+                },
+                "5": {
+                    "caption": "",
+                    "sub": ""
+                }
+            }
         },
         "2": {
-            "displayName": "Concert/Touring"
+            "directoryName": "concert",
+            "displayName": "Concert/Touring",
+            "images": {
+                "1": {
+                    "caption": "Sam Smith",
+                    "sub": "Photo by Joe Okpako"
+                },
+                "2": {
+                    "caption": "CC Smugglers",
+                    "sub": "Wilderness Festival"
+                },
+                "3": {
+                    "caption": "London Contemporary Voices",
+                    "sub": "St John at Hackney"
+                },
+                "4": {
+                    "caption": "London Contemporary Voices",
+                    "sub": "Union Chapel"
+                },
+                "5": {
+                    "caption": "London Contemporary Voices",
+                    "sub": "Union Chapel"
+                },
+                "6": {
+                    "caption": "Null Paradox",
+                    "sub": "Canton Village Theater, USA"
+                },
+                "7": {
+                    "caption": "Bondax",
+                    "sub": "Koko, London"
+                }
+            }
         },
         "3": {
-            "displayName": "Corporate"
+            "directoryName": "corporate",
+            "displayName": "Corporate",
+            "images": {
+                "1": {
+                    "caption": "Sanofi AGM",
+                    "sub": ""
+                },
+                "2": {
+                    "caption": "WPP AGM",
+                    "sub": ""
+                }
         },
         "4": {
-            "displayName": "Exhibitions"
+            "directoryName": "exhibition",
+            "displayName": "Exhibitions",
+            "images": {
+                "1": {
+                    "caption": "VISA",
+                    "sub": ""
+                },
+                "2": {
+                    "caption": "Jeanneu",
+                    "sub": ""
+                },
+                "3": {
+                    "caption": "Nobel Biocare",
+                    "sub": "EuroPerio"
+                },
+                "4": {
+                    "caption": "Nobel Biocare",
+                    "sub": "EuroPerio"
+                },
+                "5": {
+                    "caption": "TK Maxx",
+                    "sub": ""
+                }
         },
         "5": {
-            "displayName": "Fashion"
+            "directoryName": "fashion",
+            "displayName": "Fashion",
+            "images": {
+                "1": {
+                    "caption": "WELLA",
+                    "sub": ""
+                }
         },
         "6": {
-            "displayName": "Live Events"
+            "directoryName": "live",
+            "displayName": "Live Events",
+            "images": {
+                "1": {
+                    "caption": "",
+                    "sub": ""
+                },
+                "2": {
+                    "caption": "Battersea Power Station",
+                    "sub": ""
+                },
+                "3": {
+                    "caption": "McDonald's 50th Anniversary Dinner",
+                    "sub": ""
+                },
+                "4": {
+                    "caption": "",
+                    "sub": ""
+                }
         },
         "7": {
-            "displayName": "Theatre/Television"
+            "directoryName": "theatre",
+            "displayName": "Theatre/Television",
+            "images": {
+                "1": {
+                    "caption": "Stasis",
+                    "sub": "White Bear Theatre"
+                },
+                "2": {
+                    "caption": "BFI Awards",
+                    "sub": ""
+                }
         }
     }
 }

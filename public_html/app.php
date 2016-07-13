@@ -16,7 +16,6 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 $app = new Application();
 
 $stringsFilePath = "strings.json";
-$galleriesFilePath = "photo-galleries.json";
 $credentialsFilePath = "credentials.json";
 
 //
@@ -51,10 +50,9 @@ function writeJson($obj, $filePath) {
 $strings = loadJson($stringsFilePath);
 
 // Photo galleries
-$json = loadJson($galleriesFilePath);
 $galleries = array();
-foreach($json['galleries'] as $key => $value) {
-    $gal = new Gallery($value, $strings["galleries"][$key]);
+foreach($strings['galleries'] as $key => $value) {
+    $gal = new Gallery($value);
     $galleries[$key] = $gal;
 }
 
@@ -140,9 +138,8 @@ $app->post("/edit-portfolio", function (Request $request) use ($app, $context, $
 
 $app->post("/edit-gallery", function (Request $request) use ($app, $context) {
     $gallery_id = $request->request->get("gallery_id");
+    $context["chosenGalleryId"] = $gallery_id;
     $context["chosenGallery"] = $context["galleries"][$gallery_id];
-
-    vdump($context["chosenGallery"]);
 
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
 })->bind("post-edit-gallery");
