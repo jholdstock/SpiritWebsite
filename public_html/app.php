@@ -136,12 +136,24 @@ $app->post("/edit-portfolio", function (Request $request) use ($app, $context, $
 })->bind("post-edit-portfolio");
 
 
-$app->post("/edit-gallery", function (Request $request) use ($app, $context) {
-    $gallery_id = $request->request->get("gallery_id");
+$app->post("/edit-gallery", function (Request $request) use ($app, $context, $strings) {
+    
+    $gallery_id = $request->request->get("chosenGalleryId");
+    if ($gallery_id) {
+        $strings["galleries"][$gallery_id]["images"] = $request->request->get("images");
+
+        writeJson($strings, $GLOBALS["stringsFilePath"]);
+        
+        $context["saveSuccess"] = true;
+        $context["strings"] = $strings;
+    } else {
+        $gallery_id = $request->request->get("gallery_id");
+    }
+
     $context["chosenGalleryId"] = $gallery_id;
-    $context["chosenGallery"] = $context["galleries"][$gallery_id];
 
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
+
 })->bind("post-edit-gallery");
 
 //

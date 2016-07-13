@@ -163,6 +163,7 @@
                     "caption": "WPP AGM",
                     "sub": ""
                 }
+            }
         },
         "4": {
             "directoryName": "exhibition",
@@ -188,6 +189,7 @@
                     "caption": "TK Maxx",
                     "sub": ""
                 }
+            }
         },
         "5": {
             "directoryName": "fashion",
@@ -197,6 +199,7 @@
                     "caption": "WELLA",
                     "sub": ""
                 }
+            }
         },
         "6": {
             "directoryName": "live",
@@ -218,6 +221,7 @@
                     "caption": "",
                     "sub": ""
                 }
+            }
         },
         "7": {
             "directoryName": "theatre",
@@ -231,6 +235,7 @@
                     "caption": "BFI Awards",
                     "sub": ""
                 }
+            }
         }
     }
 }

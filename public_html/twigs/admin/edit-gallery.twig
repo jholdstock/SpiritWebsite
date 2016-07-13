@@ -1,20 +1,24 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block formAction %}<!-- Todo -->{% endblock %}
-{% block pageTitle %}{{ chosenGallery.displayName }}{% endblock %}
+{% block formAction %}/edit-gallery{% endblock %}
+{% block pageTitle %}{{ galleries[chosenGalleryId].displayName }}{% endblock %}
 
 {% block editForm %}
 	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
 
-  {% for i in 0..(chosenGallery.photos|length)-1 %}
-    <img src="{{chosenGallery.photos[i].thumbnailUrl}}" style="display:block;"/>
+  {% for i in 0..(galleries[chosenGalleryId].photos|length)-1 %}
+    <img src="{{galleries[chosenGalleryId].photos[i].thumbnailUrl}}" style="display:block;"/>
     
     <div class="label">Caption:</div>
-		<input type="text" name="" value="{{ chosenGallery.photos[i].caption }}"></input>
+		<input type="text" 
+		name="images[{{i+1}}][caption]"
+		value="{{ strings["galleries"][chosenGalleryId]["images"][i+1]["caption"] }}"></input>
 		<div class="clearfix"></div>
 		
 		<div class="label">Sub caption:</div>
-		<input type="text" name="" value="{{ chosenGallery.photos[i].subcaption }}"></input>
+		<input type="text" 
+		name="images[{{i+1}}][sub]"
+		value="{{ strings["galleries"][chosenGalleryId]["images"][i+1]["sub"] }}"></input>
 		<div class="clearfix"></div>
 
     <br />
