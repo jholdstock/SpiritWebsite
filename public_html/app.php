@@ -9,7 +9,9 @@ require_once 'GalleriesController.php';
 require_once 'ContactController.php';
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
+use Silex\Provider\SwiftmailerServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 
@@ -21,11 +23,12 @@ $credentialsFilePath = "credentials.json";
 //
 // REGISTER SERVICES
 //
+$app->register(new SwiftmailerServiceProvider());
+$app->register(new UrlGeneratorServiceProvider());
 $app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/twigs',
 ));
-
-$app->register(new UrlGeneratorServiceProvider());
+    
 
 //
 // CONTEXT
@@ -83,7 +86,9 @@ $app->post('/password', function (Request $request) use ($app, $context, $creden
     $password = $request->request->get("oldPassword");
     if ($password) {
             if ($password == $credentials["password"]) {
-                // update creds
+                $credentials["password"] = $request->request->get("password");
+                writeJson($credentials, $GLOBALS["credentialsFilePath"]);
+
                 $context["changePasswordSuccess"] = true;
                 return $app['twig']->render('admin/edit-password.twig', $context);
             } else {
@@ -156,6 +161,36 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $st
 
 })->bind("post-edit-gallery");
 
+$app->get("/forgotten", function (Request $request) use ($app, $credentials) {
+    $app['swiftmailer.options'] = array(
+        'host' => 'smtp.gmail.com',
+        'port' => '465',
+        'username' => 'Spirit.Design.Website@gmail.com',
+        'password' => $credentials["emailpassword"],
+        'encryption' => "ssl",
+        'auth_mode' => "login"
+    );  
+
+    $username = $credentials["username"];
+    $password = $credentials["password"];
+    $msg = "Username = $username\r\nPassword = $password";
+    
+    $email = \Swift_Message::newInstance()
+        ->setSubject('Website password')
+        ->setFrom(array('Spirit.Design.Website@gmail.com'))
+        ->setTo(array('Spirit.Design.Website@gmail.com'))
+        ->setBody($msg);
+
+    $success = $app['mailer']->send($email);
+
+    vdump($success);
+
+    if (!$success) {
+        return new Response("", 500);
+    }
+
+    return new Response("", 204);
+})->bind("get-forgotten");
 //
 // ERROR HANDLER
 //
