@@ -7,10 +7,10 @@
 		
 		{% for i in 1..7 %}
 			<div class="label">Gallery {{ i }}:</div>
-			<input type="text" size="50" maxlength="50" name="galleries[{{i}}][displayName]" value='{{ strings["galleries"][i]["displayName"] }}'></input>
-			<button style="display:inline;" form="gallery_{{ i }}_form" type="submit">Edit Images</button>
-
+			<input type="text" maxlength="50" name="galleries[{{i}}][displayName]" value='{{ strings["galleries"][i]["displayName"] }}'></input>
+			<button style="display:inline; margin:5px;" form="gallery_{{ i }}_form" type="submit">Edit Images</button>
 			<div class="clearfix"></div>
+			
 		{% endfor %}
 
 		</fieldset>

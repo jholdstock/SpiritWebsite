@@ -34,14 +34,12 @@
 				<input type="submit" value="Password">
 			</form>
 		</div>
-
-		
-		
+	
 		<form method="post" id="edit-strings-form" action="{% block formAction %}{% endblock %}">
 			<fieldset>
 		    <legend>{% block pageTitle %}{% endblock %}</legend>
 
-				<button type="submit" form="edit-strings-form" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
+				<button type="submit" id="save" form="edit-strings-form" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
 
 				{% if saveSuccess %}
 					<div class="success" style="display:inline;">

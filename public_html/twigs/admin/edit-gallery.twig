@@ -7,7 +7,7 @@
 	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
 
   {% for i in 0..(galleries[chosenGalleryId].photos|length)-1 %}
-    <img src="{{galleries[chosenGalleryId].photos[i].thumbnailUrl}}" style="display:block;"/>
+    <img src="{{galleries[chosenGalleryId].photos[i].thumbnailUrl}}" style="display:block; margin:auto;"/>
     
     <div class="label">Caption:</div>
 		<input type="text" 

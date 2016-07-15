@@ -21,14 +21,14 @@ html {
   float: left;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   display: inline;
-  width: 300px;
+  width: 400px;
 }
 
 textarea[type=text] {
   display: inline;
-  width: 450px;
+  width: 400px;
 }
 
 fieldset {
