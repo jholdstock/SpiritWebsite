@@ -29,23 +29,45 @@
 		<input type="submit" value="Submit"></input>
 	</form>
 	<br />
-	<div class="success" style="width: 20em; display: none;">
-			Password emailed to Spirit Design
-		</div>
+	<div class="success" id="server204" style="width: 20em; display: none;">
+		Password emailed to Spirit Design
+	</div>
+	<div class="error" id="server500" style="width: 20em; display: none;">
+		An error occurred. Email was not sent.
+	</div>
+	<div class="error" id="server403" style="width: 20em; display: none;">
+		This feature can only be used once every 24 hours
+	</div>
 	<a href="#" id="forgotten">Forgotten password?</a>
 
 {% endblock %}
 
 {% block extraJs %}
 	<script>
-	var finished = function() {
-		$(".success").show();
+	var finished = function(response) {
+		switch (response.status) {
+			case 204: 
+				$("#server204").show();
+			break;
+
+			case 403: 
+				$("#server403").show();
+			break;
+			
+			default: 
+				$("#server500").show();
+			break;
+		}
 	}
 
 	$("#forgotten").on("click", function(){
+		$("#server204").hide();
+		$("#server403").hide();
+		$("#server500").hide();
+		
 		$.ajax({
-		url: "/forgotten",
-		complete: finished,
+			url: "/forgotten",
+			complete: finished,
 		});
 	});</script>
 {% endblock %}

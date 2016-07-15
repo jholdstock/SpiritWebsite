@@ -19,6 +19,7 @@ $app = new Application();
 
 $stringsFilePath = "strings.json";
 $credentialsFilePath = "credentials.json";
+$timeFilePath = "time.json";
 
 //
 // REGISTER SERVICES
@@ -29,10 +30,6 @@ $app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/twigs',
 ));
     
-
-//
-// CONTEXT
-//
 
 function vdump($obj) {
     echo '<pre>';
@@ -63,7 +60,6 @@ $credentials = loadJson($credentialsFilePath);
 
 // Background photos
 $bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
-
 $context = array(
     "galleries" => $galleries,
     "bgImages"  => $bgImages,
@@ -73,7 +69,6 @@ $context = array(
 //
 // ROUTING
 //
-
 $app->get('/', function () use ($app, $context) {
     return $app['twig']->render('base.twig', $context);
 })->bind("get-home");
@@ -162,35 +157,44 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $st
 })->bind("post-edit-gallery");
 
 $app->get("/forgotten", function (Request $request) use ($app, $credentials) {
-    $app['swiftmailer.options'] = array(
-        'host' => 'smtp.gmail.com',
-        'port' => '465',
-        'username' => 'Spirit.Design.Website@gmail.com',
-        'password' => $credentials["emailpassword"],
-        'encryption' => "ssl",
-        'auth_mode' => "login"
-    );  
+    $now = time();
+    $then = file_get_contents($GLOBALS["timeFilePath"]);
 
-    $username = $credentials["username"];
-    $password = $credentials["password"];
-    $msg = "Username = $username\r\nPassword = $password";
-    
-    $email = \Swift_Message::newInstance()
-        ->setSubject('Website password')
-        ->setFrom(array('Spirit.Design.Website@gmail.com'))
-        ->setTo(array('Spirit.Design.Website@gmail.com'))
-        ->setBody($msg);
+    if (($now - $then) > (60*60*24)) {
+        $app['swiftmailer.options'] = array(
+            'host' => 'smtp.gmail.com',
+            'port' => '465',
+            'username' => 'Spirit.Design.Website@gmail.com',
+            'password' => $credentials["emailpassword"],
+            'encryption' => "ssl",
+            'auth_mode' => "login"
+        );  
+        $app['swiftmailer.use_spool'] = false;
+        
+        $username = $credentials["username"];
+        $password = $credentials["password"];
+        $msg = "Username = $username\r\nPassword = $password";
+        
+        $email = \Swift_Message::newInstance()
+            ->setSubject('Website password')
+            ->setFrom(array('Spirit.Design.Website@gmail.com'))
+            ->setTo(array('Spirit.Design.Website@gmail.com'))
+            ->setBody($msg);
+            
+        try {
+            $app['mailer']->send($email);
+        }
+        catch(\Exception $e) {
+            return new Response(null, 500);
+        }
 
-    $success = $app['mailer']->send($email);
-
-    vdump($success);
-
-    if (!$success) {
-        return new Response("", 500);
+        file_put_contents($GLOBALS["timeFilePath"], $now);
+        return new Response(null, 204);
+    } else {
+        return new Response(null, 403);
     }
-
-    return new Response("", 204);
 })->bind("get-forgotten");
+
 //
 // ERROR HANDLER
 //
