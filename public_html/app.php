@@ -188,10 +188,19 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $co
 $app->post("/delete-image", function (Request $request) use ($app, $context, $config) {
     $gallery_id = $request->request->get("gallery_id");
     $image_id = $request->request->get("image_id");
-    echo("delete image $image_id from gallery $gallery_id");
-    // delete image
-    // delete thumbnail
-    // update json
+
+    $directoryName = $config["galleries"][$gallery_id]["directoryName"];
+    $filename = $config["galleries"][$gallery_id]["images"][$image_id]["filename"];
+
+    unlink("img/galleries/$directoryName/$filename");
+    unlink("img/galleries/$directoryName/200x133/$filename");
+
+    unset($config["galleries"][$gallery_id]["images"][$image_id]);
+    $context["saveSuccess"] = true;
+    $context["config"] = $config;
+
+    addGalleriesToContext($config, $context);
+    writeJson($config, $GLOBALS["configFilePath"]);
 
     $context["chosenGalleryId"] = $gallery_id;
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
