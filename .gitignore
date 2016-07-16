@@ -1,5 +1,5 @@
 /vendor/
 *.db
-public_html/conf/config-2.json
-public_html/conf/credentials2.json
+conf/config-2.json
+conf/credentials2.json
 public_html/img/galleries/*/200x133

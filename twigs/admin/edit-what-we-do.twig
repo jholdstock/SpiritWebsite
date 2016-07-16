@@ -1,6 +1,6 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block formAction %}/edit-what-we-do{% endblock %}
+{% block formAction %}{{ path('post-edit-what-we-do') }}{% endblock %}
 {% block pageTitle %}What we do{% endblock %}
 
 {% block editForm %}

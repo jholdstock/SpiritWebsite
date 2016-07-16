@@ -18,8 +18,17 @@ abstract class Controller {
   function handle() {
     if ($this->newConfig) {
         $this->parseNewConfig();
-        $this->config[$this->getName()] = $this->newConfig;
-        
+
+        $oldConfig = $this->config[$this->getName()];
+        $newConfig = $this->newConfig;
+
+        foreach($oldConfig as $key => $value) {
+            $newConfig2 = array_merge($value, $newConfig[$key]);
+            $oldConfig[$key] = $newConfig2;
+        }
+
+        $this->config[$this->getName()] = $oldConfig;
+
         writeJson($this->config, $GLOBALS["configFilePath"]);
 
         $this->context["config"] = $this->config;

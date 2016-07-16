@@ -22,7 +22,7 @@
 		</div>
 	{% endif %}
 	
-	<form action="admin" method="post">
+	<form action="{{ path('post-admin') }}" method="post">
 		<label>Username:</label><input style="width: 15em;" type="text" name="username"></input>
 		<br />
 		<label>Password:</label><input style="width: 15em;" type="password" name="password"></input>
@@ -66,7 +66,7 @@
 		$("#server500").hide();
 		
 		$.ajax({
-			url: "/forgotten",
+			url: "{{ path('get-forgotten') }}",
 			complete: finished,
 		});
 	});</script>

@@ -1,6 +1,6 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block formAction %}/edit-portfolio{% endblock %}
+{% block formAction %}{{ path('post-edit-portfolio') }}{% endblock %}
 {% block pageTitle %}Portfolio{% endblock %}
 
 {% block editForm %}
@@ -17,7 +17,7 @@
 	</form>
 	
 	{% for i in 1..7 %}
-		<form id="gallery_{{ i }}_form" action="/edit-gallery" method="post">
+		<form id="gallery_{{ i }}_form" action="{{ path('post-edit-gallery') }}" method="post">
 			<input type="hidden" name="gallery_id" value="{{ i }}"></input>
 		</form>
 	{% endfor %}	

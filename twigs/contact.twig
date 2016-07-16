@@ -1,0 +1,65 @@
+<div id="contact" style="display:none;">
+	<div class="inline" style="text-align: left; padding: 30px 40px"> 
+
+		<table id="contact-table">
+			<tr>
+				<td valign="top">{% include "icon_address.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>
+					{% for string in config["contact"]["address"] %}
+						{{ string }}<br />
+					{% endfor %}
+				</td>
+			</tr>
+			
+			<tr class="v-spacer"></tr>
+			
+			<tr>
+				<td>{% include "icon_telephone.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>{{ config["contact"]["telephone"] }}</td>
+			</tr>
+			
+			<tr class="v-spacer"></tr>
+			
+			<tr>
+				<td>{% include "icon_fax.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>{{ config["contact"]["fax"] }}</td>
+			</tr>
+
+			<tr class="v-spacer"></tr>
+
+			<tr>
+				<td>{% include "icon_email.twig" %}</td>
+				<td class="h-spacer"></td>
+				<td>{{ config["contact"]["email"] }}</td>
+			</tr>
+
+			<tr class="v-spacer"></tr>
+
+			<tr>
+				<td><a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706"><img src="/img/fb.png" id="fb-logo" /></a></td>
+				<td class="h-spacer"></td>
+				<td><a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706">{{ config["contact"]["facebook"] }}</a></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<iframe class="inline map" width="500" height="400" frameborder="0" style="margin: 20px; border:0;" src="{{ config["contact"]["map-url"] }}"></iframe>
+</div>
+
+<script>
+	
+function setMapSize() {
+		var width = $('iframe').parent().width() - 50;
+		if ($(window).width() < 1013)
+	  		$('iframe').width(width);
+	  	else
+	  		$('iframe').width(500);
+};
+
+	$( window ).resize(setMapSize);
+
+</script>

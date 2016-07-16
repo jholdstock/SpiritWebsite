@@ -1,6 +1,6 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block formAction %}/edit-gallery{% endblock %}
+{% block formAction %}{{ path('post-edit-gallery') }}{% endblock %}
 {% block pageTitle %}{{ galleries[chosenGalleryId].displayName }}{% endblock %}
 
 {% block editForm %}
@@ -29,7 +29,7 @@
 </form>
 	
 {% for image in galleries[chosenGalleryId].photos %}
-	<form id="image_{{ image.id }}_del_form" action="/delete-image" method="post">
+	<form id="image_{{ image.id }}_del_form" action="{{ path('post-delete-image') }}" method="post">
 		<input type="hidden" name="gallery_id" value="{{ chosenGalleryId }}"></input>
 		<input type="hidden" name="image_id" value="{{ image.id }}"></input>
 	</form>

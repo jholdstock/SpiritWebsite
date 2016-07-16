@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Spirit Design UK</title>
+		
+		<!-- Metadata -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+
+		<!-- Style -->
+		<link rel="stylesheet" type="text/css" href="/css/custom.css" />
+		<link rel="stylesheet" type="text/css" href="/css/menu.css" />
+		<link href="//fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="/img/favicon.ico" />
+		
+		<!-- Script -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+    	window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')
+    </script>
+
+    <!-- Photoswipe -->
+		<link rel="stylesheet" href="/js/vendor/photoswipe/photoswipe.css"> 
+		<link rel="stylesheet" href="/js/vendor/photoswipe/default-skin/default-skin.css"> 
+		<script src="/js/vendor/photoswipe/photoswipe.min.js"></script> 
+		<script src="/js/vendor/photoswipe/photoswipe-ui-default.min.js"></script> 
+    
+    <!-- Vegas -->
+    <link rel="stylesheet" href="/js/vendor/vegas/vegas.min.css">
+		<script src="/js/vendor/vegas/vegas.min.js"></script>
+
+    {% block head %}
+		{% endblock %}
+
+	</head>
+
+	<body>
+{% include "photoswipe.twig" %}
+
+		<div id="cssmenu">
+			<ul id="menu">
+				<li><a open-div="#about-us"><span>About us</span></a>
+				<li><a open-div="#what-we-do"><span>What we do</span></a>
+				
+				<li class="has-sub"><a href="#"><span>Portfolio</span></a>
+				<ul>
+				{% for gallery in galleries %}
+					<li><a open-div="#{{gallery.cssName}}"><span>{{gallery.displayName}}</span></a></li>
+				{% endfor %}
+				</ul>
+
+				<li><a open-div="#contact"><span>Contact</span></a>
+			</ul>
+			<img src="/img/logo.png" id="logo" />
+		</div>	
+
+		<div id="content" style="display:none;">
+			{% include "about-us.twig" %}
+			{% include "what-we-do.twig" %}
+			{% include "contact.twig" %}
+			{% include "gallery.twig" %}
+		</div>
+		
+		<div id="footer">
+			<table style="margin: auto">
+				<tr>
+					<td>{% include "icon_telephone.twig" %}</td>
+					<td>{{ config["contact"]["telephone"] }}</td>
+					<td class="h-spacer"></td>
+					<td>{% include "icon_email.twig" %}</td>
+					<td>{{ config["contact"]["email"] }}</td>
+					<td>
+						<a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706">
+							<img src="/img/fb.png" id="fb-logo" />
+						</a>
+					</td>
+					<td>
+						<a target="_blank" href="https://www.facebook.com/Spirit-Design-Ltd-246635435373706">
+							{{ config["contact"]["facebook"] }}
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+
+	<script>
+		var bgImages = [
+			{% for image in bgImages %}
+			{ src: "img/bg/{{ image }}" },
+			{% endfor %}
+		];
+	</script>
+
+	<script src="/js/main.js"></script>
+
+</html>

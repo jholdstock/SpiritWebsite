@@ -18,16 +18,16 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 
 $app = new Application();
 
-$timeFilePath = "conf/time.json";
-$configFilePath = "conf/config.json";
-$credentialsFilePath = "conf/credentials.json";
+$timeFilePath = "../conf/time.json";
+$configFilePath = "../conf/config.json";
+$credentialsFilePath = "../conf/credentials.json";
 
 //
 // REGISTER SERVICES
 //
 $app->register(new SwiftmailerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
-$app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/twigs'));
+$app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/../twigs'));
 $app->register(new MyThumbnailGenerator());
 
 function vdump($obj) {
@@ -97,7 +97,7 @@ $app->get('/admin', function () use ($app, $context) {
     return $app['twig']->render('admin/admin-login.twig', $context);
 })->bind("get-admin");
 
-$app->post('/password', function (Request $request) use ($app, $context, $credentials) {
+$app->post('/admin/password', function (Request $request) use ($app, $context, $credentials) {
     $password = $request->request->get("oldPassword");
     if ($password) {
             if ($password == $credentials["password"]) {
@@ -116,7 +116,7 @@ $app->post('/password', function (Request $request) use ($app, $context, $creden
     }
 })->bind("post-password");
 
-$app->post('/admin', function (Request $request) use ($app, $context, $credentials) {
+$app->post('/admin/login', function (Request $request) use ($app, $context, $credentials) {
     $username = $request->request->get("username");
     $password = $request->request->get("password");
     if ($username == $credentials["username"] && $password == $credentials["password"]) {
@@ -127,36 +127,35 @@ $app->post('/admin', function (Request $request) use ($app, $context, $credentia
     }
 })->bind("post-admin");
 
-$app->post("/edit-about-us", function (Request $request) use ($app, $context, $config) {
+$app->post("/admin/edit-about-us", function (Request $request) use ($app, $context, $config) {
     $controller = new AboutUsController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-about-us.twig", $context);
 })->bind("post-edit-about-us");
 
-$app->post("/edit-contact", function (Request $request) use ($app, $context, $config) {
+$app->post("/admin/edit-contact", function (Request $request) use ($app, $context, $config) {
     $controller = new ContactController($request->request, $config, $context);
     $context = $controller->handle();
     
     return $app["twig"]->render("admin/edit-contact.twig", $context);
 })->bind("post-edit-contact");
 
-$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $config) {
+$app->post("/admin/edit-what-we-do", function (Request $request) use ($app, $context, $config) {
     $controller = new WhatWeDoController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");
 
-$app->post("/edit-portfolio", function (Request $request) use ($app, $context, $config) {
+$app->post("/admin/edit-portfolio", function (Request $request) use ($app, $context, $config) {
     $controller = new GalleriesController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
 
-$app->post("/edit-gallery", function (Request $request) use ($app, $context, $config) {
-    
+$app->post("/admin/edit-gallery", function (Request $request) use ($app, $context, $config) {
     $gallery_id = $request->request->get("chosenGalleryId");
     if ($gallery_id) {
         $oldConfig = $config["galleries"][$gallery_id]["images"];
@@ -185,7 +184,7 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $co
 
 })->bind("post-edit-gallery");
 
-$app->post("/delete-image", function (Request $request) use ($app, $context, $config) {
+$app->post("/admin/delete-image", function (Request $request) use ($app, $context, $config) {
     $gallery_id = $request->request->get("gallery_id");
     $image_id = $request->request->get("image_id");
 
@@ -206,7 +205,7 @@ $app->post("/delete-image", function (Request $request) use ($app, $context, $co
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
 })->bind("post-delete-image");
 
-$app->get("/forgotten", function (Request $request) use ($app, $credentials) {
+$app->get("/admin/forgotten", function (Request $request) use ($app, $credentials) {
     $now = time();
     $then = file_get_contents($GLOBALS["timeFilePath"]);
 

@@ -13,26 +13,29 @@
 
 {% block body %}
 		<div id="top-menu">
+		
 			<a href="/" target="_blank">View Website</a>
 			
-			<form action="edit-about-us" method="post">
+			<form action="{{ path('post-edit-about-us') }}" method="post">
 				<input type="submit" value="About Us">
 			</form>
 
-			<form action="edit-what-we-do" method="post">
+			<form action="{{ path('post-edit-what-we-do') }}" method="post">
 				<input type="submit" value="What we do">
 			</form>
 
-			<form action="edit-contact" method="post">
+			<form action="{{ path('post-edit-portfolio') }}" method="post">
+				<input type="submit" value="Portfolio">
+			</form>
+
+			<form action="{{ path('post-edit-contact') }}" method="post">
 				<input type="submit" value="Contact">
 			</form>
 
-			<form action="edit-portfolio" method="post">
-				<input type="submit" value="Portfolio">
-			</form>
-			<form action="password" method="post">
+			<form action="{{ path('post-password') }}" method="post">
 				<input type="submit" value="Password">
 			</form>
+
 		</div>
 	
 		<form method="post" id="edit-config-form" action="{% block formAction %}{% endblock %}">

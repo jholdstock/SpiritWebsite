@@ -16,7 +16,7 @@ class MyGeneratorController
         $largestSide = max($expectedWidth, $expectedHeight);
         $base = ImageWorkshop::initFromPath($arguments['file']);
         //$base->cropMaximumInPixel(0, 0, "MM");
-        $base->resizeInPixel($largestSide, $largestSide, true, 0 ,0);
+        $base->resizeInPixel($largestSide, null, true, 0 ,0);
         $base->cropInPixel($expectedWidth, $expectedHeight, 0, 0, 'MM');
         $fileName = basename($arguments['file']);
         if (!$arguments['on_the_fly']) {

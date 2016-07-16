@@ -1,6 +1,6 @@
 {% extends "admin/edit-base.twig" %}
 
-{% block formAction %}/edit-contact{% endblock %}
+{% block formAction %}{{ path('post-edit-contact') }}{% endblock %}
 {% block pageTitle %}Contact{% endblock %}
 {% block editForm %}
 	<div class="label">Address: </div>
