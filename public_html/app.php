@@ -17,9 +17,9 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 
 $app = new Application();
 
-$configFilePath = "config.json";
-$credentialsFilePath = "credentials.json";
-$timeFilePath = "time.json";
+$timeFilePath = "conf/time.json";
+$configFilePath = "conf/config.json";
+$credentialsFilePath = "conf/credentials.json";
 
 //
 // REGISTER SERVICES
