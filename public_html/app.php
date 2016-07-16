@@ -7,6 +7,7 @@ require_once 'AboutUsController.php';
 require_once 'WhatWeDoController.php';
 require_once 'GalleriesController.php';
 require_once 'ContactController.php';
+require_once 'MyThumbnailGenerator.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,6 @@ use Silex\Application;
 use Silex\Provider\SwiftmailerServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
-use Cybits\Silex\Provider\LazyThumbnailGenerator;
 
 $app = new Application();
 
@@ -28,7 +28,7 @@ $credentialsFilePath = "conf/credentials.json";
 $app->register(new SwiftmailerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/twigs'));
-$app->register(new LazyThumbnailGenerator());
+$app->register(new MyThumbnailGenerator());
 
 function vdump($obj) {
     echo '<pre>';
@@ -260,6 +260,7 @@ $app->error(function (\Exception $e, $code) use ($app, $context) {
             "sub" => "Something has gone horribly wrong. Please try again later or try the <a href='/'>home page</a> instead."
         );
     }
+    error_log($e);
     //throw $e;
     return $app['twig']->render('error.twig', $context);
 });
