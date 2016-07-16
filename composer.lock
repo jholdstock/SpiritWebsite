@@ -4,9 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7e4fbe5a923de5d2d68d8e162acd9e93",
-    "content-hash": "e1d34dcb74b9a9acbd39fb111f067853",
+    "hash": "d6f9c53ed78c4e775dbd44a464e731c5",
+    "content-hash": "cf8b1ece25c9d2ddfa4bcdaf4a62c2e2",
     "packages": [
+        {
+            "name": "fzerorubigd/silex-lazy-thumbnail-generator",
+            "version": "dev-master",
+            "target-dir": "Cybits/Silex/Provider",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzerorubigd/silex-lazy-thumbnail-generator.git",
+                "reference": "e93c10e9d0b706384cf8f8d6a5b81c7cfcea1576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzerorubigd/silex-lazy-thumbnail-generator/zipball/e93c10e9d0b706384cf8f8d6a5b81c7cfcea1576",
+                "reference": "e93c10e9d0b706384cf8f8d6a5b81c7cfcea1576",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "*",
+                "silex/silex": "~1.0",
+                "sybio/image-workshop": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cybits\\Silex\\Provider\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fzerorubigd",
+                    "email": "fzerorubigd@gmail.com"
+                }
+            ],
+            "description": "A lazy thumbnail generator for silex",
+            "keywords": [
+                "image-workshop",
+                "silex",
+                "thumbnail"
+            ],
+            "time": "2014-01-27 16:48:57"
+        },
         {
             "name": "ircmaxell/password-compat",
             "version": "v1.0.4",
@@ -48,6 +92,84 @@
                 "password"
             ],
             "time": "2014-11-20 16:49:30"
+        },
+        {
+            "name": "monolog/monolog",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "55841909e2bcde01b5318c35f2b74f8ecc86e037"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/55841909e2bcde01b5318c35f2b74f8ecc86e037",
+                "reference": "55841909e2bcde01b5318c35f2b74f8ecc86e037",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "~1.0"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^2.4.9",
+                "doctrine/couchdb": "~1.0@dev",
+                "graylog2/gelf-php": "~1.0",
+                "jakub-onderka/php-parallel-lint": "0.9",
+                "php-amqplib/php-amqplib": "~2.4",
+                "php-console/php-console": "^3.1.3",
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "2.3.0",
+                "ruflin/elastica": ">=0.90 <3.0",
+                "sentry/sentry": "^0.13",
+                "swiftmailer/swiftmailer": "~5.3"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+                "php-console/php-console": "Allow sending log messages to Google Chrome",
+                "rollbar/rollbar": "Allow sending log messages to Rollbar",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
+                "sentry/sentry": "Allow sending log messages to a Sentry server"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Monolog\\": "src/Monolog"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+            "homepage": "http://github.com/Seldaek/monolog",
+            "keywords": [
+                "log",
+                "logging",
+                "psr-3"
+            ],
+            "time": "2016-07-02 14:02:10"
         },
         {
             "name": "pimple/pimple",
@@ -264,6 +386,55 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "sybio/image-workshop",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sybio/ImageWorkshop.git",
+                "reference": "14bbecd7b834404b8ea9cc7136f25d1c0e9adbfc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sybio/ImageWorkshop/zipball/14bbecd7b834404b8ea9cc7136f25d1c0e9adbfc",
+                "reference": "14bbecd7b834404b8ea9cc7136f25d1c0e9adbfc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPImageWorkshop": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Clément Guillemain",
+                    "homepage": "http://clementguillemain.fr",
+                    "role": "Developer / Freelancer"
+                }
+            ],
+            "description": "Powerful PHP class using GD library to work easily with images including layer notion (like Photoshop or GIMP)",
+            "homepage": "http://phpimageworkshop.com",
+            "keywords": [
+                "class",
+                "crop",
+                "gd",
+                "image",
+                "library",
+                "resize",
+                "rotate",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2014-08-01 12:01:59"
         },
         {
             "name": "symfony/debug",
@@ -854,12 +1025,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "cdccdbbdf35f38a70eb6931667a76fc68012a999"
+                "reference": "c535bc0b56aa93ead7a75b6841f28645153b0539"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/cdccdbbdf35f38a70eb6931667a76fc68012a999",
-                "reference": "cdccdbbdf35f38a70eb6931667a76fc68012a999",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c535bc0b56aa93ead7a75b6841f28645153b0539",
+                "reference": "c535bc0b56aa93ead7a75b6841f28645153b0539",
                 "shasum": ""
             },
             "require": {
@@ -907,14 +1078,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-06-24 05:05:43"
+            "time": "2016-07-10 07:48:21"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "twig/twig": 20
+        "twig/twig": 20,
+        "fzerorubigd/silex-lazy-thumbnail-generator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -7,7 +7,7 @@ class Gallery {
     	$this->displayName = $gallery_json["displayName"];
     	$this->cssName = "gallery-$dir";
      	$imgDir = "img/galleries/$dir/";
-        $thumbDir = "img/thumbnails/$dir/";
+        $thumbDir = "img/galleries/$dir/200x133/";
 
      	$filesInDir = scandir($imgDir);
      	

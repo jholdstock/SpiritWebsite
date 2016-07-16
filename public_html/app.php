@@ -14,6 +14,7 @@ use Silex\Application;
 use Silex\Provider\SwiftmailerServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
+use Cybits\Silex\Provider\LazyThumbnailGenerator;
 
 $app = new Application();
 
@@ -27,7 +28,7 @@ $credentialsFilePath = "conf/credentials.json";
 $app->register(new SwiftmailerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/twigs'));
-    
+$app->register(new LazyThumbnailGenerator());
 
 function vdump($obj) {
     echo '<pre>';
@@ -48,7 +49,6 @@ function writeJson($obj, $filePath) {
 $config = loadJson($configFilePath);
 
 // Photo galleries
-
 function addGalleriesToContext($config, &$context) {
     $galleries = array();
     foreach($config['galleries'] as $key => $value) {
@@ -66,6 +66,23 @@ $context = array(
     "bgImages"  => $bgImages,
     "config"    => $config,
 );
+
+function thumbnailConfig() {
+    $routes = array();
+    $gals = array("automotive", "corporate", "exhibition", "concert", "fashion", "live", "theatre");
+    foreach ($gals as $n) {
+        array_push($routes, array(
+            "route" => "/img/galleries/$n",
+            'allowed_ext' => 'jpg,jpeg,png',
+            'allowed_size' => array('200.133'),
+            'max_size' => '200.133',
+            'on_the_fly' => false,
+            'route_name' => "thumbnail_$n"
+        ));
+    }
+    return $routes;
+}
+$app['lazy.thumbnail.mount_paths'] = thumbnailConfig();
 
 addGalleriesToContext($config, $context);
 
