@@ -96,22 +96,27 @@
             "displayName": "Automotive",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "Hyundai i20 Launch",
                     "sub": "MK Dons Arena"
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "Hyundai i20 Launch",
                     "sub": "MK Dons Arena"
                 },
                 "3": {
+                    "filename": "3.jpg",
                     "caption": "SWIFT Launch",
                     "sub": ""
                 },
                 "4": {
+                    "filename": "4.jpg",
                     "caption": "General Motors",
                     "sub": "Cologne"
                 },
                 "5": {
+                    "filename": "5.jpg",
                     "caption": "",
                     "sub": ""
                 }
@@ -122,30 +127,37 @@
             "displayName": "Concert/Touring",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "Sam Smith",
                     "sub": "Photo by Joe Okpako"
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "CC Smugglers",
                     "sub": "Wilderness Festival"
                 },
                 "3": {
+                    "filename": "3.jpg",
                     "caption": "London Contemporary Voices",
                     "sub": "St John at Hackney"
                 },
                 "4": {
+                    "filename": "4.jpg",
                     "caption": "London Contemporary Voices",
                     "sub": "Union Chapel"
                 },
                 "5": {
+                    "filename": "5.jpg",
                     "caption": "London Contemporary Voices",
                     "sub": "Union Chapel"
                 },
                 "6": {
+                    "filename": "6.jpg",
                     "caption": "Null Paradox",
                     "sub": "Canton Village Theater, USA"
                 },
                 "7": {
+                    "filename": "7.jpg",
                     "caption": "Bondax",
                     "sub": "Koko, London"
                 }
@@ -156,10 +168,12 @@
             "displayName": "Corporate",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "Sanofi AGM",
                     "sub": ""
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "WPP AGM",
                     "sub": ""
                 }
@@ -170,22 +184,27 @@
             "displayName": "Exhibitions",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "VISA",
                     "sub": ""
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "Jeanneu",
                     "sub": ""
                 },
                 "3": {
+                    "filename": "3.jpg",
                     "caption": "Nobel Biocare",
                     "sub": "EuroPerio"
                 },
                 "4": {
+                    "filename": "4.jpg",
                     "caption": "Nobel Biocare",
                     "sub": "EuroPerio"
                 },
                 "5": {
+                    "filename": "5.jpg",
                     "caption": "TK Maxx",
                     "sub": ""
                 }
@@ -196,6 +215,7 @@
             "displayName": "Fashion",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "WELLA",
                     "sub": ""
                 }
@@ -206,18 +226,22 @@
             "displayName": "Live Events",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "",
                     "sub": ""
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "Battersea Power Station",
                     "sub": ""
                 },
                 "3": {
+                    "filename": "3.jpg",
                     "caption": "McDonald's 50th Anniversary Dinner",
                     "sub": ""
                 },
                 "4": {
+                    "filename": "4.jpg",
                     "caption": "",
                     "sub": ""
                 }
@@ -228,10 +252,12 @@
             "displayName": "Theatre/Television",
             "images": {
                 "1": {
+                    "filename": "1.jpg",
                     "caption": "Stasis",
                     "sub": "White Bear Theatre"
                 },
                 "2": {
+                    "filename": "2.jpg",
                     "caption": "BFI Awards",
                     "sub": ""
                 }

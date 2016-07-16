@@ -6,23 +6,35 @@
 {% block editForm %}
 	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
 
-  {% for i in 0..(galleries[chosenGalleryId].photos|length)-1 %}
-    <img src="{{galleries[chosenGalleryId].photos[i].thumbnailUrl}}" style="display:block; margin:auto;"/>
-    
+  {% for image in galleries[chosenGalleryId].photos %}
+    <div style="text-align:center;">
+    	<img src="{{ image.thumbnailUrl }}" style="display:inline; vertical-align: middle;"/>
+  		<button style="display:inline-block; float:none;" form="image_{{ image.id }}_del_form" type="submit">Delete Image</button>
+  	</div>
+    <div class="clearfix"></div>
+
     <div class="label">Caption:</div>
-		<input type="text" 
-		name="images[{{i+1}}][caption]"
-		value="{{ strings["galleries"][chosenGalleryId]["images"][i+1]["caption"] }}"></input>
+		<input type="text" name="images[{{ image.id }}][caption]"value="{{ image.caption }}"></input>
 		<div class="clearfix"></div>
 		
 		<div class="label">Sub caption:</div>
-		<input type="text" 
-		name="images[{{i+1}}][sub]"
-		value="{{ strings["galleries"][chosenGalleryId]["images"][i+1]["sub"] }}"></input>
+		<input type="text" name="images[{{ image.id }}][sub]" value="{{ image.subcaption }}"></input>
 		<div class="clearfix"></div>
 
     <br />
 
   {% endfor %}
 
+	</fieldset>
+</form>
+	
+{% for image in galleries[chosenGalleryId].photos %}
+	<form id="image_{{ image.id }}_del_form" action="/delete-image" method="post">
+		<input type="hidden" name="gallery_id" value="{{ chosenGalleryId }}"></input>
+		<input type="hidden" name="image_id" value="{{ image.id }}"></input>
+	</form>
+{% endfor %}	
+
+<form style="display:none;">
+	<fieldset>
 {% endblock %}

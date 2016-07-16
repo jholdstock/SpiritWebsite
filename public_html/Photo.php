@@ -1,7 +1,8 @@
 <?php
 
 class Photo {
-    public function __construct($url, $thumbnailUrl, $caption, $subcaption) {
+    public function __construct($url, $thumbnailUrl, $caption, $subcaption, $id) {
+    	$this->id = $id;
      	$this->url = $url;
       $this->thumbnailUrl = $thumbnailUrl;
       $this->caption = $caption;

@@ -26,9 +26,7 @@ $timeFilePath = "time.json";
 //
 $app->register(new SwiftmailerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
-$app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/twigs',
-));
+$app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/twigs'));
     
 
 function vdump($obj) {
@@ -50,10 +48,14 @@ function writeJson($obj, $filePath) {
 $strings = loadJson($stringsFilePath);
 
 // Photo galleries
-$galleries = array();
-foreach($strings['galleries'] as $key => $value) {
-    $gal = new Gallery($value);
-    $galleries[$key] = $gal;
+
+function addGalleriesToContext($strings, &$context) {
+    $galleries = array();
+    foreach($strings['galleries'] as $key => $value) {
+        $gal = new Gallery($value);
+        $galleries[$key] = $gal;
+    }
+    $context["galleries"] = $galleries;
 }
 
 $credentials = loadJson($credentialsFilePath);
@@ -61,10 +63,11 @@ $credentials = loadJson($credentialsFilePath);
 // Background photos
 $bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
 $context = array(
-    "galleries" => $galleries,
     "bgImages"  => $bgImages,
     "strings"   => $strings,
 );
+
+addGalleriesToContext($strings, $context);
 
 //
 // ROUTING
@@ -135,17 +138,26 @@ $app->post("/edit-portfolio", function (Request $request) use ($app, $context, $
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
 
-
 $app->post("/edit-gallery", function (Request $request) use ($app, $context, $strings) {
     
     $gallery_id = $request->request->get("chosenGalleryId");
     if ($gallery_id) {
-        $strings["galleries"][$gallery_id]["images"] = $request->request->get("images");
+        $oldConfig = $strings["galleries"][$gallery_id]["images"];
+        $newConfig = $request->request->get("images");
+
+        foreach($oldConfig as $key => $value) {
+            $newConfig2 = array_merge($value, $newConfig[$key]);
+            $oldConfig[$key] = $newConfig2;
+        }
+
+        $strings["galleries"][$gallery_id]["images"] = $oldConfig;
 
         writeJson($strings, $GLOBALS["stringsFilePath"]);
         
         $context["saveSuccess"] = true;
         $context["strings"] = $strings;
+
+        addGalleriesToContext($strings, $context);
     } else {
         $gallery_id = $request->request->get("gallery_id");
     }
@@ -155,6 +167,17 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $st
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
 
 })->bind("post-edit-gallery");
+
+$app->post("/delete-image", function (Request $request) use ($app, $context, $strings) {
+    $gallery_id = $request->request->get("gallery_id");
+    $image_id = $request->request->get("image_id");
+    // delete image
+    // delete thumbnail
+    // update json
+
+    $context["chosenGalleryId"] = $gallery_id;
+    return $app["twig"]->render("admin/edit-gallery.twig", $context);
+})->bind("post-delete-image");
 
 $app->get("/forgotten", function (Request $request) use ($app, $credentials) {
     $now = time();
