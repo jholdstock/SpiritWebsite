@@ -6,9 +6,9 @@ class ContactController extends Controller {
     return "contact";
   }
 
-  protected function parseNewStrings() {
-    $address = $this->newStrings["address"];
-    $this->newStrings["address"] = $this->explodeAndCleanup($address);
+  protected function parseNewConfig() {
+    $address = $this->newConfig["address"];
+    $this->newConfig["address"] = $this->explodeAndCleanup($address);
   }
 
 }

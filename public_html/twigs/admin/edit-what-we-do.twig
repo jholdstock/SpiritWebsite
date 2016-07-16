@@ -5,30 +5,30 @@
 
 {% block editForm %}
 	<div class="label">Left heading:</div>
-	<input type="text" maxlength="50" name="what-we-do[heading1]" value="{{ strings["what-we-do"]["heading1"] }}"></input>
+	<input type="text" maxlength="50" name="what-we-do[heading1]" value="{{ config["what-we-do"]["heading1"] }}"></input>
 	<div class="clearfix"></div>
 
 	<div class="label">Left list:</div>
-	<textarea type="text" name="what-we-do[list1]" rows="8">{% for string in strings["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<textarea type="text" name="what-we-do[list1]" rows="8">{% for string in config["what-we-do"]["list1"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 	<div class="clearfix"></div>
 
 	<div class="label">Right heading:</div>
-	<input type="text" maxlength="50" name="what-we-do[heading2]" value="{{ strings["what-we-do"]["heading2"] }}"></input>
+	<input type="text" maxlength="50" name="what-we-do[heading2]" value="{{ config["what-we-do"]["heading2"] }}"></input>
 	<div class="clearfix"></div>
 
 	<div class="label">Right list:</div>
-	<textarea type="text" name="what-we-do[list2]" rows="8">{% for string in strings["what-we-do"]["list2"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<textarea type="text" name="what-we-do[list2]" rows="8">{% for string in config["what-we-do"]["list2"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 	<div class="clearfix"></div>
 
 	<div class="label">Centre text:</div>
-	<textarea type="text" name="what-we-do[text]" rows="8">{{ strings["what-we-do"]["text"] }}</textarea>
+	<textarea type="text" name="what-we-do[text]" rows="8">{{ config["what-we-do"]["text"] }}</textarea>
 	<div class="clearfix"></div>
 
 	<div class="label">Clients heading:</div>
-	<input type="text" maxlength="50" name="what-we-do[recent-clients-heading]" value="{{ strings["what-we-do"]["recent-clients-heading"] }}"></input>
+	<input type="text" maxlength="50" name="what-we-do[recent-clients-heading]" value="{{ config["what-we-do"]["recent-clients-heading"] }}"></input>
 	<div class="clearfix"></div>
 
 	<div class="label">Client list:</div>
-	<textarea type="text" name="what-we-do[recent-clients]" rows="12">{% for string in strings["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
+	<textarea type="text" name="what-we-do[recent-clients]" rows="12">{% for string in config["what-we-do"]["recent-clients"] %}{{ string }}&#13;&#10;{% endfor %}</textarea>
 	<div class="clearfix"></div>
 {% endblock %}

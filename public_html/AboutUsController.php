@@ -6,6 +6,6 @@ class AboutUsController extends Controller {
 		return "about-us";
 	}
 
-  protected function parseNewStrings() {
+  protected function parseNewConfig() {
   }
 }

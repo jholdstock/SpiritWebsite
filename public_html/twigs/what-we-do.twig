@@ -1,28 +1,28 @@
 <div id="what-we-do" style="display:none;">
 	<div style="margin: auto">
 		<div class="inline listContainer">
-			<h2>{{ strings["what-we-do"]["heading1"] }}</h2>
+			<h2>{{ config["what-we-do"]["heading1"] }}</h2>
 			<ul>
-				{% for string in strings["what-we-do"]["list1"] %}
+				{% for string in config["what-we-do"]["list1"] %}
 					<li>{{ string }}</li>
 				{% endfor %}
 			</ul>
 		</div>
 		<div class="inline listContainer">
-			<h2>{{ strings["what-we-do"]["heading2"] }}</h2>
+			<h2>{{ config["what-we-do"]["heading2"] }}</h2>
 			<ul>
-				{% for string in strings["what-we-do"]["list2"] %}
+				{% for string in config["what-we-do"]["list2"] %}
 					<li>{{ string }}</li>
 				{% endfor %}
 			</ul>
 		</div>
 	</div>
 
-	<p style="font-size:16px;">{{ strings["what-we-do"]["text"] }}</p>
+	<p style="font-size:16px;">{{ config["what-we-do"]["text"] }}</p>
 	
-	<h2>{{ strings["what-we-do"]["recent-clients-heading"] }}</h2>
+	<h2>{{ config["what-we-do"]["recent-clients-heading"] }}</h2>
 	<div class="items">
-		{% for string in strings["what-we-do"]["recent-clients"] %}
+		{% for string in config["what-we-do"]["recent-clients"] %}
 			<div class="item">{{ string }}</div>
 		{% endfor %}
 	</div>

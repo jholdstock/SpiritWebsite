@@ -2,27 +2,27 @@
 
 abstract class Controller {
   
-  protected $newStrings;
-  protected $strings;
+  protected $newConfig;
+  protected $config;
   protected $context;
 
-  abstract protected function parseNewStrings();
+  abstract protected function parseNewConfig();
   abstract protected function getName();
 
-	function __construct(&$request, &$strings, &$context) {
-    $this->newStrings = $request->get($this->getName());
-    $this->strings = $strings;
+	function __construct(&$request, &$config, &$context) {
+    $this->newConfig = $request->get($this->getName());
+    $this->config = $config;
     $this->context = $context;
 	}
 
   function handle() {
-    if ($this->newStrings) {
-        $this->parseNewStrings();
-        $this->strings[$this->getName()] = $this->newStrings;
+    if ($this->newConfig) {
+        $this->parseNewConfig();
+        $this->config[$this->getName()] = $this->newConfig;
         
-        writeJson($this->strings, $GLOBALS["stringsFilePath"]);
+        writeJson($this->config, $GLOBALS["configFilePath"]);
 
-        $this->context["strings"] = $this->strings;
+        $this->context["config"] = $this->config;
         $this->context["saveSuccess"] = true;
     }
     return $this->context;

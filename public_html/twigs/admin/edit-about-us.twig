@@ -7,11 +7,11 @@
 	{% for i in 1..6 %}
 		
 		<div class="label">Heading {{i}}: </div>
-		<input type="text" maxlength="50" name="about-us[{{i}}][heading]" value='{{ strings["about-us"][i]["heading"] }}'></input>
+		<input type="text" maxlength="50" name="about-us[{{i}}][heading]" value='{{ config["about-us"][i]["heading"] }}'></input>
 		<div class="clearfix"></div>
 
 		<div class="label">Paragraph {{i}}: </div>
-		<textarea type="text" name="about-us[{{i}}][text]" rows="8">{{ strings["about-us"][i]["text"] }}</textarea>
+		<textarea type="text" name="about-us[{{i}}][text]" rows="8">{{ config["about-us"][i]["text"] }}</textarea>
 		<div class="clearfix"></div>
 		
 	{% endfor %}

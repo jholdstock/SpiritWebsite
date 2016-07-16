@@ -17,7 +17,7 @@ use Silex\Provider\UrlGeneratorServiceProvider;
 
 $app = new Application();
 
-$stringsFilePath = "strings.json";
+$configFilePath = "config.json";
 $credentialsFilePath = "credentials.json";
 $timeFilePath = "time.json";
 
@@ -45,13 +45,13 @@ function writeJson($obj, $filePath) {
     file_put_contents($filePath, json_encode($obj));
 }
 
-$strings = loadJson($stringsFilePath);
+$config = loadJson($configFilePath);
 
 // Photo galleries
 
-function addGalleriesToContext($strings, &$context) {
+function addGalleriesToContext($config, &$context) {
     $galleries = array();
-    foreach($strings['galleries'] as $key => $value) {
+    foreach($config['galleries'] as $key => $value) {
         $gal = new Gallery($value);
         $galleries[$key] = $gal;
     }
@@ -64,10 +64,10 @@ $credentials = loadJson($credentialsFilePath);
 $bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
 $context = array(
     "bgImages"  => $bgImages,
-    "strings"   => $strings,
+    "config"    => $config,
 );
 
-addGalleriesToContext($strings, $context);
+addGalleriesToContext($config, $context);
 
 //
 // ROUTING
@@ -110,39 +110,39 @@ $app->post('/admin', function (Request $request) use ($app, $context, $credentia
     }
 })->bind("post-admin");
 
-$app->post("/edit-about-us", function (Request $request) use ($app, $context, $strings) {
-    $controller = new AboutUsController($request->request, $strings, $context);
+$app->post("/edit-about-us", function (Request $request) use ($app, $context, $config) {
+    $controller = new AboutUsController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-about-us.twig", $context);
 })->bind("post-edit-about-us");
 
-$app->post("/edit-contact", function (Request $request) use ($app, $context, $strings) {
-    $controller = new ContactController($request->request, $strings, $context);
+$app->post("/edit-contact", function (Request $request) use ($app, $context, $config) {
+    $controller = new ContactController($request->request, $config, $context);
     $context = $controller->handle();
     
     return $app["twig"]->render("admin/edit-contact.twig", $context);
 })->bind("post-edit-contact");
 
-$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $strings) {
-    $controller = new WhatWeDoController($request->request, $strings, $context);
+$app->post("/edit-what-we-do", function (Request $request) use ($app, $context, $config) {
+    $controller = new WhatWeDoController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-what-we-do.twig", $context);
 })->bind("post-edit-what-we-do");
 
-$app->post("/edit-portfolio", function (Request $request) use ($app, $context, $strings) {
-    $controller = new GalleriesController($request->request, $strings, $context);
+$app->post("/edit-portfolio", function (Request $request) use ($app, $context, $config) {
+    $controller = new GalleriesController($request->request, $config, $context);
     $context = $controller->handle();
 
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
 
-$app->post("/edit-gallery", function (Request $request) use ($app, $context, $strings) {
+$app->post("/edit-gallery", function (Request $request) use ($app, $context, $config) {
     
     $gallery_id = $request->request->get("chosenGalleryId");
     if ($gallery_id) {
-        $oldConfig = $strings["galleries"][$gallery_id]["images"];
+        $oldConfig = $config["galleries"][$gallery_id]["images"];
         $newConfig = $request->request->get("images");
 
         foreach($oldConfig as $key => $value) {
@@ -150,14 +150,14 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $st
             $oldConfig[$key] = $newConfig2;
         }
 
-        $strings["galleries"][$gallery_id]["images"] = $oldConfig;
+        $config["galleries"][$gallery_id]["images"] = $oldConfig;
 
-        writeJson($strings, $GLOBALS["stringsFilePath"]);
+        writeJson($config, $GLOBALS["configFilePath"]);
         
         $context["saveSuccess"] = true;
-        $context["strings"] = $strings;
+        $context["config"] = $config;
 
-        addGalleriesToContext($strings, $context);
+        addGalleriesToContext($config, $context);
     } else {
         $gallery_id = $request->request->get("gallery_id");
     }
@@ -168,9 +168,10 @@ $app->post("/edit-gallery", function (Request $request) use ($app, $context, $st
 
 })->bind("post-edit-gallery");
 
-$app->post("/delete-image", function (Request $request) use ($app, $context, $strings) {
+$app->post("/delete-image", function (Request $request) use ($app, $context, $config) {
     $gallery_id = $request->request->get("gallery_id");
     $image_id = $request->request->get("image_id");
+    echo("delete image $image_id from gallery $gallery_id");
     // delete image
     // delete thumbnail
     // update json

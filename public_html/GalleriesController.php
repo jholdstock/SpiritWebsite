@@ -6,6 +6,6 @@ class GalleriesController extends Controller {
 		return "galleries";
 	}
 
-  protected function parseNewStrings() {
+  protected function parseNewConfig() {
   }
 }
