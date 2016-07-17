@@ -5,13 +5,36 @@
 
 {% block editForm %}
 	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
+	
+	{% if uploadError is defined %}
+		<div class="error">
+			{{ uploadError|raw }}
+		</div>
+	{% endif %}
+
+	{% if uploadSuccess is defined %}
+		<div class="success">
+			{{ uploadSuccess|raw }}
+		</div>
+	{% endif %}
+
+	<div class="info">
+		The maximum file size for each image is <b>{{ maxFile }}</b>.<br/>
+		The total size of all images must be less than <b>{{ maxUpload }}</b>. <br/>
+		These limits can only be changed by the server administrator.
+	</div>
+	
+
+	<div class="label">Upload new images:</div>
+	<input type="file" name="newImages[]" accept=".png, .jpg, .jpeg" multiple/>
+	<div class="clearfix"></div>	
+  <br><br>
 
   {% for image in galleries[chosenGalleryId].photos %}
     <div style="text-align:center;">
     	<img src="{{ image.thumbnailUrl }}" style="display:inline; vertical-align: middle;"/>
   		<button style="display:inline-block; float:none;" form="image_{{ image.id }}_del_form" type="submit">Delete Image</button>
   	</div>
-    <div class="clearfix"></div>
 
     <div class="label">Caption:</div>
 		<input type="text" name="images[{{ image.id }}][caption]"value="{{ image.caption }}"></input>

@@ -9,6 +9,7 @@ require_once 'GalleriesController.php';
 require_once 'ContactController.php';
 require_once 'MyThumbnailGenerator.php';
 
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
@@ -66,6 +67,8 @@ $context = array(
     "bgImages"  => $bgImages,
     "config"    => $config,
 );
+$context["maxUpload"] = ini_get("post_max_size");
+$context["maxFile"] = ini_get("upload_max_filesize");
 
 function thumbnailConfig() {
     $routes = array();
@@ -155,9 +158,20 @@ $app->post("/admin/edit-portfolio", function (Request $request) use ($app, $cont
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 $app->post("/admin/edit-gallery", function (Request $request) use ($app, $context, $config) {
     $gallery_id = $request->request->get("chosenGalleryId");
     if ($gallery_id) {
+        // Save strings
         $oldConfig = $config["galleries"][$gallery_id]["images"];
         $newConfig = $request->request->get("images");
 
@@ -166,11 +180,51 @@ $app->post("/admin/edit-gallery", function (Request $request) use ($app, $contex
             $oldConfig[$key] = $newConfig2;
         }
 
-        $config["galleries"][$gallery_id]["images"] = $oldConfig;
+        if ($oldConfig === $config["galleries"][$gallery_id]["images"]) {
 
-        writeJson($config, $GLOBALS["configFilePath"]);
-        
-        $context["saveSuccess"] = true;
+        } else {
+            $config["galleries"][$gallery_id]["images"] = $oldConfig;
+
+            writeJson($config, $GLOBALS["configFilePath"]);
+            
+            $context["saveSuccess"] = true;
+        }
+
+ 
+        // Save Images
+        $images = $request->files->get("newImages");
+        if ($images[0]) {
+            foreach($images as $image) {
+                $originalFileName = $image->getClientOriginalName().".".$image->getClientOriginalExtension();
+                try {
+                    $name = generateRandomString().".".$image->getClientOriginalExtension();
+                    $image->move("img/galleries/".$config["galleries"][$gallery_id]["directoryName"], $name);
+                    array_push($config["galleries"][$gallery_id]["images"], array(
+                        "filename" => $name,
+                        "caption" => "",
+                        "sub" => ""    
+                    ));
+
+                    writeJson($config, $GLOBALS["configFilePath"]);
+                    if (!isset($context["uploadSuccess"])) { 
+                        $context["uploadSuccess"] = "";
+                    }
+                    $context["uploadSuccess"] = $context["uploadSuccess"] . $originalFileName . " was uploaded<br/>";    
+                }
+                catch (FileException $e) {
+                    $msg = $e->getMessage();
+                    if (strpos($msg, "exceeds your upload_max_filesize") !== false) {
+                        if (!isset($context["uploadError"])) { 
+                            $context["uploadError"] = "";
+                        }
+                        $context["uploadError"] = $context["uploadError"] . $originalFileName . " exceeds max file size<br/>";    
+                    } else {
+                        throw $e;
+                    }
+                }
+            }
+        }
+
         $context["config"] = $config;
 
         addGalleriesToContext($config, $context);
@@ -179,7 +233,6 @@ $app->post("/admin/edit-gallery", function (Request $request) use ($app, $contex
     }
 
     $context["chosenGalleryId"] = $gallery_id;
-
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
 
 })->bind("post-edit-gallery");
