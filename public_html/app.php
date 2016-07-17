@@ -168,7 +168,36 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+function iniGetBytes($val)
+{
+    $val = trim(ini_get($val));
+    if ($val != '') {
+        $last = strtolower(
+            $val{strlen($val) - 1}
+        );
+    } else {
+        $last = '';
+    }
+    switch ($last) {
+        // The 'G' modifier is available since PHP 5.1.0
+        case 'g':
+            $val *= 1024;
+        case 'm':
+            $val *= 1024;
+        case 'k':
+            $val *= 1024;
+    }
+
+    return $val;
+}
+
 $app->post("/admin/edit-gallery", function (Request $request) use ($app, $context, $config) {
+
+    $maxPostSize = iniGetBytes('post_max_size');
+    if ($_SERVER['CONTENT_LENGTH'] > $maxPostSize) {
+        die("<br>Upload size exceeded server maximum");
+    }
+
     $gallery_id = $request->request->get("chosenGalleryId");
     if ($gallery_id) {
         // Save strings
@@ -190,12 +219,11 @@ $app->post("/admin/edit-gallery", function (Request $request) use ($app, $contex
             $context["saveSuccess"] = true;
         }
 
- 
         // Save Images
         $images = $request->files->get("newImages");
         if ($images[0]) {
             foreach($images as $image) {
-                $originalFileName = $image->getClientOriginalName().".".$image->getClientOriginalExtension();
+                $originalFileName = $image->getClientOriginalName();
                 try {
                     $name = generateRandomString().".".$image->getClientOriginalExtension();
                     $image->move("img/galleries/".$config["galleries"][$gallery_id]["directoryName"], $name);
@@ -248,7 +276,7 @@ $app->post("/admin/delete-image", function (Request $request) use ($app, $contex
     unlink("img/galleries/$directoryName/200x133/$filename");
 
     unset($config["galleries"][$gallery_id]["images"][$image_id]);
-    $context["saveSuccess"] = true;
+    $context["uploadSuccess"] = "Image deleted";
     $context["config"] = $config;
 
     addGalleriesToContext($config, $context);

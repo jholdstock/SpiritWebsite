@@ -25,7 +25,7 @@
 	</div>
 	
 
-	<div class="label">Upload new images:</div>
+	<div class="label">Upload images:</div>
 	<input type="file" name="newImages[]" accept=".png, .jpg, .jpeg" multiple/>
 	<div class="clearfix"></div>	
   <br><br>
@@ -33,7 +33,7 @@
   {% for image in galleries[chosenGalleryId].photos %}
     <div style="text-align:center;">
     	<img src="{{ image.thumbnailUrl }}" style="display:inline; vertical-align: middle;"/>
-  		<button style="display:inline-block; float:none;" form="image_{{ image.id }}_del_form" type="submit">Delete Image</button>
+  		<button style="display:inline-block; float:none;" onclick="return confirmDelete();" form="image_{{ image.id }}_del_form" type="submit">Delete Image</button>
   	</div>
 
     <div class="label">Caption:</div>
@@ -57,6 +57,12 @@
 		<input type="hidden" name="image_id" value="{{ image.id }}"></input>
 	</form>
 {% endfor %}	
+
+<script>
+		var confirmDelete = function() {
+			return confirm("Do you really want to delete this image? It cannot be undone");
+		}
+</script>
 
 <form style="display:none;">
 	<fieldset>
