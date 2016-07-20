@@ -286,7 +286,7 @@ $app->post("/admin/delete-image", function (Request $request) use ($app, $contex
     return $app["twig"]->render("admin/edit-gallery.twig", $context);
 })->bind("post-delete-image");
 
-$app->get("/admin/forgotten", function (Request $request) use ($app, $credentials) {
+$app->get("/admin/forgotten", function (Request $request) use ($app, $credentials, $credentialsFilePath) {
     $now = time();
     $then = file_get_contents($GLOBALS["timeFilePath"]);
 
@@ -315,6 +315,12 @@ $app->get("/admin/forgotten", function (Request $request) use ($app, $credential
             $app['mailer']->send($email);
         }
         catch(\Exception $e) {
+            $msg = $e->getMessage();
+            if (strpos($msg, "Failed to authenticate") !== false) {
+                error_log("SMTP authentication failed. Username and/or password are probably wrong in '$credentialsFilePath'");
+            } else {
+                error_log($e);
+            }
             return new Response(null, 500);
         }
 
