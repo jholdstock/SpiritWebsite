@@ -23,8 +23,17 @@ abstract class Controller {
         $newConfig = $this->newConfig;
 
         foreach($oldConfig as $key => $value) {
+          if ($key == "address"
+            ||$key == "recent-clients"
+            ||$key == "list1"
+            ||$key == "list2") {
+            $oldConfig[$key] = $newConfig[$key];
+          } else if (is_array($value)) {
             $newConfig2 = array_merge($value, $newConfig[$key]);
             $oldConfig[$key] = $newConfig2;
+          } else {
+            $oldConfig[$key] = $newConfig[$key];
+          }
         }
 
         $this->config[$this->getName()] = $oldConfig;

@@ -103,8 +103,8 @@ $app->get('/admin', function () use ($app, $context) {
 $app->post('/admin/password', function (Request $request) use ($app, $context, $credentials) {
     $password = $request->request->get("oldPassword");
     if ($password) {
-            if ($password == $credentials["password"]) {
-                $credentials["password"] = $request->request->get("password");
+            if ($password == $credentials["admin_password"]) {
+                $credentials["admin_password"] = $request->request->get("password");
                 writeJson($credentials, $GLOBALS["credentialsFilePath"]);
 
                 $context["changePasswordSuccess"] = true;
@@ -122,7 +122,7 @@ $app->post('/admin/password', function (Request $request) use ($app, $context, $
 $app->post('/admin/login', function (Request $request) use ($app, $context, $credentials) {
     $username = $request->request->get("username");
     $password = $request->request->get("password");
-    if ($username == $credentials["username"] && $password == $credentials["password"]) {
+    if ($username == $credentials["admin_username"] && $password == $credentials["admin_password"]) {
         return $app['twig']->render('admin/edit-landing.twig', $context);
     } else {
         $context["authError"] = true;
@@ -294,21 +294,21 @@ $app->get("/admin/forgotten", function (Request $request) use ($app, $credential
         $app['swiftmailer.options'] = array(
             'host' => 'smtp.gmail.com',
             'port' => '465',
-            'username' => 'Spirit.Design.Website@gmail.com',
-            'password' => $credentials["emailpassword"],
+            'username' => $credentials["email_from"],
+            'password' => $credentials["email_from_password"],
             'encryption' => "ssl",
             'auth_mode' => "login"
         );  
         $app['swiftmailer.use_spool'] = false;
         
-        $username = $credentials["username"];
-        $password = $credentials["password"];
+        $username = $credentials["admin_username"];
+        $password = $credentials["admin_password"];
         $msg = "Username = $username\r\nPassword = $password";
         
         $email = \Swift_Message::newInstance()
             ->setSubject('Website password')
-            ->setFrom(array('Spirit.Design.Website@gmail.com'))
-            ->setTo(array('Spirit.Design.Website@gmail.com'))
+            ->setFrom(array($credentials["email_from"]))
+            ->setTo(array($credentials["email_to"]))
             ->setBody($msg);
             
         try {
