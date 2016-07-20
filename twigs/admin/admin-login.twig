@@ -17,7 +17,7 @@
 	<h1>Login</h1>
 	
 	{% if authError %}
-		<div class="error" style="width: 10em;">
+		<div class="error animated flash" style="width: 10em;">
 			Incorrect details
 		</div>
 	{% endif %}
@@ -29,13 +29,16 @@
 		<input type="submit" value="Submit"></input>
 	</form>
 	<br />
-	<div class="success" id="server204" style="width: 20em; display: none;">
+	<div class="info" id="clearfix" style="width: 23em; visibility:hidden;">
+		Clearfix
+	</div>
+	<div class="success animated flash" id="server204" style="width: 23em; display: none;">
 		Password emailed to Spirit Design
 	</div>
-	<div class="error" id="server500" style="width: 20em; display: none;">
+	<div class="error animated flash" id="server500" style="width: 23em; display: none;">
 		An error occurred. Email was not sent.
 	</div>
-	<div class="error" id="server403" style="width: 20em; display: none;">
+	<div class="error animated flash" id="server403" style="width: 23em; display: none;">
 		This feature can only be used once every 24 hours
 	</div>
 	<a href="#" id="forgotten">Forgotten password?</a>
@@ -45,6 +48,7 @@
 {% block extraJs %}
 	<script>
 	var finished = function(response) {
+		$("#clearfix").hide();
 		switch (response.status) {
 			case 204: 
 				$("#server204").show();
@@ -61,6 +65,7 @@
 	}
 
 	$("#forgotten").on("click", function(){
+		$("#clearfix").show();
 		$("#server204").hide();
 		$("#server403").hide();
 		$("#server500").hide();

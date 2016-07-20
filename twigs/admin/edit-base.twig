@@ -45,7 +45,7 @@
 				<button type="submit" id="save" form="edit-config-form" onclick="return checkIfAnyValueChanged();" style="display:{% block saveButtonState %}inline{% endblock %};">Save Changes</button>
 
 				{% if saveSuccess %}
-					<div class="success" style="display:inline;">
+					<div class="success animated flash" style="display:inline;">
 						Changes saved. <a href="/" target="_blank">Want to check them now?</a>
 					</div>
 				{% endif %}

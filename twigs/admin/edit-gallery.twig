@@ -7,13 +7,13 @@
 	<input type="hidden" name="chosenGalleryId" value="{{ chosenGalleryId }}"></input>
 	
 	{% if uploadError is defined %}
-		<div class="error">
+		<div class="error animated flash">
 			{{ uploadError|raw }}
 		</div>
 	{% endif %}
 
 	{% if uploadSuccess is defined %}
-		<div class="success">
+		<div class="success animated flash">
 			{{ uploadSuccess|raw }}
 		</div>
 	{% endif %}
