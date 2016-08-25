@@ -37,14 +37,27 @@
   		<button style="display:inline-block; float:none;" onclick="return confirmDelete();" form="image_{{ image.id }}_del_form" type="submit">Delete Image</button>
   	</div>
 
-    <div class="label">Caption:</div>
-		<input type="text" name="images[{{ image.id }}][caption]"value="{{ image.caption }}"></input>
-		<div class="clearfix"></div>
+  	
+	    <div 
+	    {% if chosenGalleryId == "bg" %}
+	    	style="display:none;"
+	    {% endif %}
+	    class="label">Caption:</div>
+			<input 
+				type="{% if chosenGalleryId == "bg" %}hidden{% else %}text{% endif %}"
+			 	name="images[{{ image.id }}][caption]"value="{{ image.caption }}"></input>
+			<div class="clearfix"></div>
+			
+	    <div 
+	    {% if chosenGalleryId == "bg" %}
+	    	style="display:none;"
+	    {% endif %}
+			class="label">Sub caption:</div>
+			<input 
+				type="{% if chosenGalleryId == "bg" %}hidden{% else %}text{% endif %}"
+			 	name="images[{{ image.id }}][sub]" value="{{ image.subcaption }}"></input>
+			<div class="clearfix"></div>
 		
-		<div class="label">Sub caption:</div>
-		<input type="text" name="images[{{ image.id }}][sub]" value="{{ image.subcaption }}"></input>
-		<div class="clearfix"></div>
-
     <br />
 
   {% endfor %}

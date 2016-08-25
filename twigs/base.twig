@@ -48,7 +48,9 @@
 				<li class="has-sub"><a href="#"><span>Portfolio</span></a>
 				<ul>
 				{% for gallery in galleries %}
-					<li><a open-div="#{{gallery.cssName}}"><span>{{gallery.displayName}}</span></a></li>
+					{% if gallery.displayName != "Background" %}
+						<li><a open-div="#{{gallery.cssName}}"><span>{{gallery.displayName}}</span></a></li>
+					{% endif %}
 				{% endfor %}
 				</ul>
 

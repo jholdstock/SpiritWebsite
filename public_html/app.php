@@ -54,7 +54,6 @@ function addGalleriesToContext($config, &$context) {
     }
     
     $backgroundGallery = $galleries["bg"];
-    unset($galleries["bg"]);
 
     $context["bgImages"] = $backgroundGallery;
     $context["galleries"] = $galleries;
@@ -62,7 +61,7 @@ function addGalleriesToContext($config, &$context) {
 
 function thumbnailConfig() {
     $routes = array();
-    $gals = array("automotive", "corporate", "exhibition", "concert", "fashion", "live", "theatre");
+    $gals = array("automotive", "corporate", "exhibition", "concert", "fashion", "live", "theatre", "bg");
     foreach ($gals as $n) {
         array_push($routes, array(
             "route" => "/img/galleries/$n",
@@ -154,6 +153,11 @@ $app->post("/admin/edit-portfolio", function (Request $request) use ($app, $cont
 
     return $app["twig"]->render("admin/edit-portfolio.twig", $context);
 })->bind("post-edit-portfolio");
+
+$app->post("/admin/edit-background", function (Request $request) use ($app, $context) {
+    $context["chosenGalleryId"] = "bg";
+    return $app["twig"]->render("admin/edit-gallery.twig", $context);
+})->bind("post-edit-background");
 
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

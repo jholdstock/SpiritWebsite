@@ -15,6 +15,10 @@
 		<div id="top-menu">
 		
 			<a href="/" target="_blank">View Website</a>
+
+			<form action="{{ path('post-edit-background') }}" method="post">
+				<input type="submit" value="Background">
+			</form>
 			
 			<form action="{{ path('post-edit-about-us') }}" method="post">
 				<input type="submit" value="About Us">
