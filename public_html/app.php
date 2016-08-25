@@ -23,13 +23,12 @@ $timeFilePath = "../conf/time.json";
 $configFilePath = "../conf/config.json";
 $credentialsFilePath = "../conf/credentials.json";
 
-//
-// REGISTER SERVICES
-//
 $app->register(new SwiftmailerServiceProvider());
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new TwigServiceProvider(), array('twig.path' => __DIR__.'/../twigs'));
 $app->register(new MyThumbnailGenerator());
+
+$context = array();
 
 function vdump($obj) {
     echo '<pre>';
@@ -47,28 +46,19 @@ function writeJson($obj, $filePath) {
     file_put_contents($filePath, json_encode($obj));
 }
 
-$config = loadJson($configFilePath);
-
-// Photo galleries
 function addGalleriesToContext($config, &$context) {
     $galleries = array();
     foreach($config['galleries'] as $key => $value) {
         $gal = new Gallery($value);
         $galleries[$key] = $gal;
     }
+    
+    $backgroundGallery = $galleries["bg"];
+    unset($galleries["bg"]);
+
+    $context["bgImages"] = $backgroundGallery;
     $context["galleries"] = $galleries;
 }
-
-$credentials = loadJson($credentialsFilePath);
-
-// Background photos
-$bgImages = array_diff(scandir('./img/bg'), array('..', '.'));
-$context = array(
-    "bgImages"  => $bgImages,
-    "config"    => $config,
-);
-$context["maxUpload"] = ini_get("post_max_size");
-$context["maxFile"] = ini_get("upload_max_filesize");
 
 function thumbnailConfig() {
     $routes = array();
@@ -87,7 +77,14 @@ function thumbnailConfig() {
 }
 $app['lazy.thumbnail.mount_paths'] = thumbnailConfig();
 
+$config = loadJson($configFilePath);
 addGalleriesToContext($config, $context);
+
+$context["config"] = $config;
+$context["maxUpload"] = ini_get("post_max_size");
+$context["maxFile"] = ini_get("upload_max_filesize");
+
+$credentials = loadJson($credentialsFilePath);
 
 //
 // ROUTING

@@ -262,6 +262,52 @@
                     "sub": ""
                 }
             }
+        },
+        "bg": {
+            "directoryName": "bg",
+            "displayName": "Background",
+            "images": {
+                "1": {
+                    "filename": "000.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "2": {
+                    "filename": "00.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "3": {
+                    "filename": "0.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "4": {
+                    "filename": "1.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "5": {
+                    "filename": "2.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "6": {
+                    "filename": "3.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "7": {
+                    "filename": "4.jpg",
+                    "caption": "",
+                    "sub": ""
+                },
+                "8": {
+                    "filename": "5.jpg",
+                    "caption": "",
+                    "sub": ""
+                }
+            }
         }
     }
 }
