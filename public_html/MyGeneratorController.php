@@ -1,7 +1,8 @@
 <?php
 
+require_once 'MyImageWorkshop.php';
+
 use Monolog\Logger;
-use PHPImageWorkshop\ImageWorkshop;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ class MyGeneratorController
         $expectedHeight = $arguments['height'];
 
         $largestSide = max($expectedWidth, $expectedHeight);
-        $base = ImageWorkshop::initFromPath($arguments['file']);
+        $base = MyImageWorkshop::initFromPath($arguments['file']);
         //$base->cropMaximumInPixel(0, 0, "MM");
         $base->resizeInPixel($largestSide, null, true, 0 ,0);
         $base->cropInPixel($expectedWidth, $expectedHeight, 0, 0, 'MM');
