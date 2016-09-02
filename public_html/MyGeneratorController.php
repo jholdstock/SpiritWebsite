@@ -1,8 +1,7 @@
 <?php
 
-require_once 'MyImageWorkshop.php';
-
 use Monolog\Logger;
+use PHPImageWorkshop\ImageWorkshop;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +14,7 @@ class MyGeneratorController
         $expectedHeight = $arguments['height'];
 
         $largestSide = max($expectedWidth, $expectedHeight);
-        $base = MyImageWorkshop::initFromPath($arguments['file']);
+        $base = ImageWorkshop::initFromPath($arguments['file']);
         //$base->cropMaximumInPixel(0, 0, "MM");
         $base->resizeInPixel($largestSide, null, true, 0 ,0);
         $base->cropInPixel($expectedWidth, $expectedHeight, 0, 0, 'MM');
@@ -24,7 +23,7 @@ class MyGeneratorController
             $folder = $arguments['web_root'] . $arguments['mount'] .
                 '/' . $arguments['width'] . 'x' . $arguments['height'];
 
-            $base->save($folder, $fileName, true);
+            $base->save($folder, $fileName, true, "000000");
             $arguments['logger'](Logger::DEBUG, "File saved in '$folder/$fileName'");
         }
 
