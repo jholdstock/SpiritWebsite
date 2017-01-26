@@ -29,6 +29,11 @@ abstract class Controller {
             ||$key == "list2") {
             $oldConfig[$key] = $newConfig[$key];
           } else if (is_array($value)) {
+
+            if ($key == "bg" && !isset($newConfig["bg"])) {
+              continue;
+            }
+
             $newConfig2 = array_merge($value, $newConfig[$key]);
             $oldConfig[$key] = $newConfig2;
           } else {
